@@ -29,6 +29,7 @@ withDefaults(defineProps<{
     width: 23rem;
     @extend %boxShadow;
     border-radius: 0.1rem;
+    align-items: center;
     @media (min-width: 1921px) {
         border-radius: 0.8vw;
         padding: 1vw;
@@ -61,6 +62,11 @@ withDefaults(defineProps<{
         font-size: 1rem;
         margin-top: auto;
         cursor: pointer;
+    }
+    .nuxt-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }    
 </style>

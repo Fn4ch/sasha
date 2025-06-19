@@ -24,7 +24,7 @@ const PRODUCTS_DATA: IVesi[] = vesi
 </script>
 <style lang="scss" scoped>
 .products{
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,11 +36,40 @@ const PRODUCTS_DATA: IVesi[] = vesi
     h2{
         font-size: 2.2rem;
         height: 1.4;
+        @media (max-width: 1024px) {
+            font-size: 1.7rem;
+        }
+        @media (max-width: 768px) {
+            font-size: 1.2rem;
+        }
+        @media (max-width: 480px) {
+            font-size: 1rem;
+        }
     }
 
     h4{
         font-weight: 400;
         font-size: 1.5rem;
+        @media (max-width: 1024px) {
+            font-size: 1.1rem;
+        }
+        @media (max-width: 768px) {
+            font-size: 0.95rem;
+        }
+        @media (max-width: 480px) {
+            font-size: 0.85rem;
+        }
+    }
+    @media (max-width: 1024px) {
+        margin-top: -40vh;
+    }
+    @media (max-width: 768px) {
+        margin-top: -20vh;
+        row-gap: 0.5rem;
+    }
+    @media (max-width: 480px) {
+        margin-top: -10vh;
+        row-gap: 0.3rem;
     }
 }
 
@@ -49,6 +78,10 @@ const PRODUCTS_DATA: IVesi[] = vesi
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 0 1rem;
+    @media (max-width: 480px) {
+        padding: 0 0.3rem;
+    }
 }
 
 .products-list{
@@ -58,6 +91,20 @@ const PRODUCTS_DATA: IVesi[] = vesi
     padding: 1.4rem;
     @media (max-width: 1440px) {
         grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem;
+    }
+    @media (max-width: 819px) {
+        grid-template-columns: 1fr;
+        padding: 0.5rem;
+        gap: 0.3rem;
+    }
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        padding: 0.2rem;
+        gap: 0.2rem;
     }
 }
 </style>
