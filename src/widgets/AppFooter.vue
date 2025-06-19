@@ -49,8 +49,14 @@ const currentYear = new Date().getFullYear()
 .logo{
   background-color: transparent;
   max-width: 156px;
+  @media (max-width: 768px) {
+    width: 80px;
+  }
 }
 .footer {
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: $colorBlack;
   color: $colorWhite;
   padding: 1rem 3rem;
@@ -66,15 +72,14 @@ const currentYear = new Date().getFullYear()
   &__container {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     
     background-color: $colorBlack;
     color: $colorWhite;
     min-height: 96px;
 
     @media (min-width: 768px) {
-      flex-direction: row;
       justify-content: space-between;
-      text-align: left;
     }
   }
 
@@ -103,6 +108,9 @@ const currentYear = new Date().getFullYear()
       span{
         color: $colorOrange;
         font-size: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        display: none;
       }
     }
   }
@@ -157,6 +165,10 @@ const currentYear = new Date().getFullYear()
     margin-top: auto;
     opacity: 0.7;
     background-color: $colorBlack;
+
+    @media (max-width: 768px) {
+      font-size: small;
+    }
 
     &__site{
       display: flex;

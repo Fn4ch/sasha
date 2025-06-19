@@ -1,25 +1,48 @@
 <template>
-    <div class="product-card">
-        <NuxtImg :src="`/images/${image}.png`" fit="cover" width="320" height="240" alt="product image" />
-        <div class="product-card__title">{{ title }}</div>
-        <div class="product-card__description">{{ description }}</div>
-        <button>Запросить цену</button>
-    </div>
+    <NuxtLink :to="`/product/${id}`" class="product-card-link">
+        <div class="product-card">
+            <NuxtImg
+                v-if="images && images.length > 0"
+                :src="`/images/${images[0]}.png`"
+                fit="cover"
+                width="320"
+                height="240"
+                alt="product image"
+            />
+            <NuxtImg
+                v-else
+                src="/images/pallete.png"
+                fit="cover"
+                width="320"
+                height="240"
+                alt="product image"
+            />
+            <div class="product-card__title">{{ title }}</div>
+            <div class="product-card__description">{{ description }}</div>
+            <button>Запросить цену</button>
+        </div>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">
 withDefaults(defineProps<{
+    id?: string,
     title?: string,
-    image?: string,
+    images?: string[],
     description?: string
 }>(), {
-    title: 'Title',
-    image: '/images/pallete.png',
+    title: 'Не удалось загрузить',
+    images: () => ['/images/pallete.png'],
     description: ''
 })
 </script>
 
 <style lang="scss" scoped>
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 .product-card{
     margin: 1rem;
     display: flex;

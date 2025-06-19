@@ -8,7 +8,8 @@
             <ProductCard 
                 v-for="(p, index) in PRODUCTS_DATA" 
                 :key="p.title"
-                :image="p.image" 
+                :id="p.id"
+                :images="p.images" 
                 :title="p.title" 
                 :description="p.description" 
             />
@@ -61,14 +62,14 @@ const PRODUCTS_DATA: IVesi[] = vesi
         }
     }
     @media (max-width: 1024px) {
-        margin-top: -40vh;
+        margin-top: -20vh;
     }
     @media (max-width: 768px) {
-        margin-top: -20vh;
+        margin-top: -5vh;
         row-gap: 0.5rem;
     }
     @media (max-width: 480px) {
-        margin-top: -10vh;
+        margin-top: 5vh;
         row-gap: 0.3rem;
     }
 }
