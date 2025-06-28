@@ -2,7 +2,7 @@
   <section class="contacts-section">
     <div class="contacts-card">
       <div class="contacts-content">
-        <h2 class="contacts-title">Контакты</h2>
+        <h2 class="contacts-title">Связаться с нами</h2>
         <ul class="contacts-list">
           <li class="contacts-item">
             <span class="contact-label">Телефон:</span>
@@ -30,7 +30,7 @@
 const number = '+79600310185'
 const number2 = '+79600310187'
 const mail = 'rusbar2008@rambler.ru'
-const address = 'Юр. Адрес г. Казань, ул. Маршала Чуйкова 15'
+const address = 'г. Казань, ул. Маршала Чуйкова 15'
 </script>
 
 <style lang="scss" scoped>
@@ -97,7 +97,6 @@ const address = 'Юр. Адрес г. Казань, ул. Маршала Чуй�
     font-weight: 300;
     color: rgba(0, 0, 0, 0.87);
     margin: 0 0 2rem 0;
-    text-align: center;
     letter-spacing: -0.5px;
     
     @media (max-width: 768px) {
@@ -129,7 +128,7 @@ const address = 'Юр. Адрес г. Казань, ул. Маршала Чуй�
 .contacts-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 1rem;
   border-radius: $borderRadius;
   background-color: #f5f5f5;

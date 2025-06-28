@@ -91,13 +91,31 @@ withDefaults(defineProps<{
         max-width: 16rem;
         padding: 0.8rem;
         margin: 0.4rem;
+        row-gap: 0.8rem;
     }
     
     @media (max-width: 480px) {
-        height: 22rem;
-        max-width: 100%;
+        height: 20rem;
+        max-width: 16rem;
+        padding: 0.8rem;
+        margin: 0.4rem;
+        row-gap: 0.6rem;
+    }
+    
+    @media (max-width: 375px) {
+        height: 18rem;
+        max-width: 14rem;
         padding: 0.6rem;
+        margin: 0.3rem;
+        row-gap: 0.5rem;
+    }
+    
+    @media (max-width: 320px) {
+        height: 16rem;
+        max-width: 12rem;
+        padding: 0.5rem;
         margin: 0.2rem;
+        row-gap: 0.4rem;
     }
     
     &__title{
@@ -110,7 +128,7 @@ withDefaults(defineProps<{
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         color: rgba(0, 0, 0, 0.87);
         
         @media (min-width: 1921px) {
@@ -132,11 +150,25 @@ withDefaults(defineProps<{
         @media (max-width: 768px) {
             font-size: 1rem;
             padding: 0.5rem 0;
+            height: 2.8em;
         }
         
         @media (max-width: 480px) {
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            height: 2.8em;
+        }
+        
+        @media (max-width: 375px) {
             font-size: 0.9rem;
             padding: 0.4rem 0;
+            height: 2.6em;
+        }
+        
+        @media (max-width: 320px) {
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            height: 2.4em;
         }
     }
     
@@ -145,39 +177,43 @@ withDefaults(defineProps<{
         color: rgba(0, 0, 0, 0.6);
         flex: 1;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
         line-height: 1.4;
+        max-height: 4rem;
         position: relative;
-        text-wrap: balance;
         word-wrap: break-word;
         
         @media (min-width: 1921px) {
             font-size: .8vw;
-            -webkit-line-clamp: 2;
+            max-height: 4rem;
         }
         
         @media (max-width: 1440px) {
+            max-height: 3.6rem;
             font-size: 0.9rem;
-            -webkit-line-clamp: 2;
         }
         
         @media (max-width: 1024px) {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            max-height: 2.8rem;
+            line-clamp: 2;
             -webkit-line-clamp: 2;
         }
         
         @media (max-width: 768px) {
             font-size: 0.8rem;
-            -webkit-line-clamp: 2;
+            max-height: 3.2rem;
+            line-height: 1.3;
         }
         
         @media (max-width: 480px) {
-            font-size: 0.75rem;
-            -webkit-line-clamp: 2;
+            display: none;
         }
+    
     }
 
     button{
@@ -194,6 +230,8 @@ withDefaults(defineProps<{
         letter-spacing: 0.5px;
         @extend %materialTransition;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: none;
+        min-height: 2.5rem;
         
         &:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -208,16 +246,32 @@ withDefaults(defineProps<{
         @media (max-width: 1024px) {
             font-size: 0.9rem;
             padding: 0.8rem 1.2rem;
+            min-height: 2.4rem;
         }
         
         @media (max-width: 768px) {
             font-size: 0.8rem;
             padding: 0.6rem 1rem;
+            min-height: 2.2rem;
         }
         
         @media (max-width: 480px) {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            padding: 0.6rem 1rem;
+            min-height: 2.2rem;
+        }
+        
+        @media (max-width: 375px) {
             font-size: 0.75rem;
             padding: 0.5rem 0.8rem;
+            min-height: 2rem;
+        }
+        
+        @media (max-width: 320px) {
+            font-size: 0.7rem;
+            padding: 0.4rem 0.6rem;
+            min-height: 1.8rem;
         }
     }
     
@@ -230,14 +284,22 @@ withDefaults(defineProps<{
         max-width: 100%;
         flex-shrink: 0;
         border-radius: $borderRadius;
+        object-fit: cover;
         
         @media (max-width: 768px) {
             max-height: 120px;
-            object-fit: cover;
         }
         
         @media (max-width: 480px) {
+            max-height: 110px;
+        }
+        
+        @media (max-width: 375px) {
             max-height: 100px;
+        }
+        
+        @media (max-width: 320px) {
+            max-height: 90px;
         }
     }
 }    
