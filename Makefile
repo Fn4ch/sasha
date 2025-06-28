@@ -20,7 +20,7 @@ pull:
 # Запуск контейнера с улучшениями
 up: down
 	docker run --name $(PROJECT_NAME) \
-	-p 127.0.0.1:$(APP_PORT):80 \
+	-p $(APP_PORT):80 \
 	--restart unless-stopped \
 	--detach \
 	$(REGISTRY_IMAGE):$(VERSION)
