@@ -18,6 +18,13 @@
 </template>
 
 <script setup lang="ts">
+<<<<<<< HEAD
 import { ProductList, ProductInfo } from '~/src/features/Product'
 import Contacts from '~/src/widgets/Contacts.vue'
 </script>
+=======
+import ProductList from '~/src/features/Product'
+import ProductInfo from '~/src/features/Product/components/ProductInfo.vue'
+
+</script>
+>>>>>>> 3d9d58f6990d34c628aaa7aadfcb1517f3cfff48
