@@ -53,13 +53,15 @@ const currentYear = new Date().getFullYear()
     width: 80px;
   }
 }
+
 .footer {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: $colorBlack;
-  color: $colorWhite;
-  padding: 1rem 3rem;
+  background-color: #212121; // Material Design dark theme
+  color: rgba(255, 255, 255, 0.87); // Material Design text on dark
+  padding: 2rem 3rem;
+  @extend %materialTransition;
 
   span{
     background-color: transparent;
@@ -74,9 +76,11 @@ const currentYear = new Date().getFullYear()
     align-items: flex-start;
     justify-content: space-between;
     
-    background-color: $colorBlack;
-    color: $colorWhite;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
     min-height: 96px;
+    max-width: 100%;
+    box-sizing: border-box;
 
     @media (min-width: 768px) {
       justify-content: space-between;
@@ -88,8 +92,8 @@ const currentYear = new Date().getFullYear()
     img {
       height: 40px;
       width: auto;
-      background-color: $colorBlack;
-      color: $colorWhite;
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.87);
     }
   }
 
@@ -108,6 +112,7 @@ const currentYear = new Date().getFullYear()
       span{
         color: $colorOrange;
         font-size: 1.5rem;
+        font-weight: 500;
       }
       @media (max-width: 768px) {
         display: none;
@@ -116,23 +121,29 @@ const currentYear = new Date().getFullYear()
   }
 
   .contacts {
-    background-color: $colorBlack;
-    color: $colorWhite;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
+    
     &__title {
       background-color: transparent;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: $colorGreen;
+      font-weight: 500;
     }
 
     &__item{
       background-color: transparent;
 
-
       a{ 
         background-color: transparent;
         text-decoration: none;
-        color: $colorWhite;
+        color: rgba(255, 255, 255, 0.87);
+        @extend %materialTransition;
+        
+        &:hover {
+          color: $colorGreen;
+        }
       }
     }
 
@@ -148,10 +159,13 @@ const currentYear = new Date().getFullYear()
 
       a {
         text-decoration: none;
-        transition: color 0.3s ease;
+        @extend %materialTransition;
+        padding: 0.25rem 0;
+        border-radius: $borderRadius;
 
         &:hover {
           color: $colorGreen;
+          background-color: rgba(255, 255, 255, 0.05);
         }
       }
     }
@@ -164,7 +178,7 @@ const currentYear = new Date().getFullYear()
     column-gap: 0.5rem;
     margin-top: auto;
     opacity: 0.7;
-    background-color: $colorBlack;
+    background-color: transparent;
 
     @media (max-width: 768px) {
       font-size: small;
@@ -185,10 +199,13 @@ const currentYear = new Date().getFullYear()
       color: $colorGreen;
       text-decoration: none;
       font-weight: 500;
-      
+      @extend %materialTransition;
+      padding: 0.25rem 0;
+      border-radius: $borderRadius;
 
       &:hover {
         text-decoration: underline;
+        background-color: rgba(76, 175, 80, 0.1);
       }
     }
   }

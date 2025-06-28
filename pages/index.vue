@@ -14,11 +14,10 @@
     </Head>
     <ProductInfo />
     <ProductList />
+    <Contacts />
 </template>
 
 <script setup lang="ts">
-import ProductList from '~/src/features/Product'
-import ProductInfo from '~/src/features/Product/components/ProductInfo.vue'
-
-
+import { ProductList, ProductInfo } from '~/src/features/Product'
+import Contacts from '~/src/widgets/Contacts.vue'
 </script>

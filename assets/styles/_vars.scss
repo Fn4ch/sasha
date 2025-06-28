@@ -1,12 +1,31 @@
-$colorWhite: #f8f9fa;
-$colorBlack: #313031;
-$colorBlue: #5e8dcf;
-$colorGreen: #75b798;
-$colorOrange: #e5953e;
-$colorGreyDark: rgba($colorBlack, 0.6);
+// Material Design Color Palette
+$colorWhite: #ffffff;
+$colorBlack: #212121; // Material Design primary text
+$colorBlue: #2196f3; // Material Design blue
+$colorGreen: #4caf50; // Material Design green
+$colorOrange: #ff9800; // Material Design orange
+$colorGreyDark: rgba(0, 0, 0, 0.6); // Material Design secondary text
+$colorGrey: rgba(0, 0, 0, 0.12); // Material Design divider
 
-$colorGrey: rgba($colorBlack, 0.2);
-
+// Material Design Shadows
 %boxShadow {
-    box-shadow: 0.03rem 0.06rem 0.4rem $colorGrey;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+%boxShadowHover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+%boxShadowElevated {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+// Material Design Transitions
+%materialTransition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Material Design Border Radius
+$borderRadius: 4px;
+$borderRadiusLarge: 8px;
+$borderRadiusSmall: 2px;

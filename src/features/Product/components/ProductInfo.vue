@@ -6,7 +6,7 @@
             class="image"
         />
         <div class="title">
-            <h1>Весы для ваших нужд</h1>
+            <h1>Весы</h1>
         </div>
     </div>
 </template>
@@ -41,9 +41,9 @@ onBeforeUnmount(() => {
 .image{
     filter: brightness(80%);
     z-index: 0;
-    width: 100vw !important;
-    min-width: 100vw !important;
-    max-width: 100vw !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     height: 100%;
     object-fit: cover;
     display: block;
@@ -62,6 +62,7 @@ onBeforeUnmount(() => {
         max-height: 30vh;
     }
 }
+
 .preview{
     position: relative;
     display: flex;
@@ -71,7 +72,7 @@ onBeforeUnmount(() => {
     width: 100%;
     height: 100vh; 
     overflow: hidden;
-    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s cubic-bezier(0.77, 0, 0.175, 1), filter 1s;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s cubic-bezier(0.4, 0, 0.2, 1), filter 1s;
     filter: blur(0); 
     opacity: 1;
     will-change: transform, opacity;
@@ -106,6 +107,10 @@ onBeforeUnmount(() => {
     width: 100%;
     h1 {
         font-size: 4rem;
+        font-weight: 300;
+        letter-spacing: -1px;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         @media (max-width: 1024px) {
             font-size: 2.5rem;
         }

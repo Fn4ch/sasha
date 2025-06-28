@@ -1,5 +1,4 @@
-<template>
-    <NuxtLink :to="`/product/${id}`" class="product-card-link">
+<template>    
         <div class="product-card">
             <NuxtImg
                 v-if="images && images.length > 0"
@@ -19,9 +18,10 @@
             />
             <div class="product-card__title">{{ title }}</div>
             <div class="product-card__description">{{ description }}</div>
-            <button>Запросить цену</button>
+            <NuxtLink :to="`/product/${id}`" class="product-card-link">
+                <button>Подробнее</button>
+            </NuxtLink>
         </div>
-    </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -43,41 +43,140 @@ withDefaults(defineProps<{
     color: inherit;
     display: block;
 }
+
 .product-card{
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    width: min-content;
+    width: 100%;
+    max-width: 23rem;
+    height: 34rem;
     padding: 1.5rem;
-    width: 23rem;
     @extend %boxShadow;
-    border-radius: 0.1rem;
+    border-radius: $borderRadiusLarge;
     align-items: center;
+    background-color: $colorWhite;
+    @extend %materialTransition;
+    row-gap: 1rem;
+    
+    &:hover {
+        @extend %boxShadowHover;
+        transform: translateY(-2px);
+    }
+    
     @media (min-width: 1921px) {
         border-radius: 0.8vw;
         padding: 1vw;
         margin-top: 2.4vw;
+        height: 30vw;
+        max-width: 25vw;
     }
+    
+    @media (max-width: 1440px) {
+        max-width: 20rem;
+        height: 32rem;
+        padding: 1.2rem;
+        margin: 0.8rem;
+    }
+    
     @media (max-width: 1024px) {
         padding: 1rem;
-        margin-top: 1rem;
+        margin: 0.6rem;
+        height: 28rem;
+        max-width: 18rem;
     }
+    
+    @media (max-width: 768px) {
+        height: 24rem;
+        max-width: 16rem;
+        padding: 0.8rem;
+        margin: 0.4rem;
+    }
+    
+    @media (max-width: 480px) {
+        height: 22rem;
+        max-width: 100%;
+        padding: 0.6rem;
+        margin: 0.2rem;
+    }
+    
     &__title{
-        padding: 1rem 0;
         font-size: 1.5rem;
         font-weight: 500;
+        flex-shrink: 0;
+        height: 3.2em;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-top: 1rem;
+        color: rgba(0, 0, 0, 0.87);
+        
         @media (min-width: 1921px) {
             padding: 0.8vw 0;
             font-size: 1.2vw;
+            height: 3.2em;
+        }
+        
+        @media (max-width: 1440px) {
+            font-size: 1.3rem;
+            padding: 0.8rem 0;
+        }
+        
+        @media (max-width: 1024px) {
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            padding: 0.5rem 0;
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 0.9rem;
+            padding: 0.4rem 0;
         }
     }
+    
     &__description{
         font-size: 1rem;
-        color: $colorGreyDark;
-        word-wrap: normal;
-        padding-bottom: 1.5rem;
+        color: rgba(0, 0, 0, 0.6);
+        flex: 1;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.4;
+        position: relative;
+        text-wrap: balance;
+        word-wrap: break-word;
+        
         @media (min-width: 1921px) {
             font-size: .8vw;
+            -webkit-line-clamp: 2;
+        }
+        
+        @media (max-width: 1440px) {
+            font-size: 0.9rem;
+            -webkit-line-clamp: 2;
+        }
+        
+        @media (max-width: 1024px) {
+            font-size: 0.85rem;
+            -webkit-line-clamp: 2;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 0.8rem;
+            -webkit-line-clamp: 2;
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 0.75rem;
+            -webkit-line-clamp: 2;
         }
     }
 
@@ -85,11 +184,61 @@ withDefaults(defineProps<{
         font-size: 1rem;
         margin-top: auto;
         cursor: pointer;
+        flex-shrink: 0;
+        border-radius: $borderRadius;
+        background-color: #f57c00;
+        color: $colorWhite;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        @extend %materialTransition;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #e65100;
+        }
+        
+        &:active {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 1024px) {
+            font-size: 0.9rem;
+            padding: 0.8rem 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 0.8rem;
+            padding: 0.6rem 1rem;
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.8rem;
+        }
     }
+    
     .nuxt-img {
         display: block;
         margin-left: auto;
         margin-right: auto;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        flex-shrink: 0;
+        border-radius: $borderRadius;
+        
+        @media (max-width: 768px) {
+            max-height: 120px;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 480px) {
+            max-height: 100px;
+        }
     }
 }    
 </style>

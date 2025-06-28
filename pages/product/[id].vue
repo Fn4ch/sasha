@@ -27,11 +27,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { PRODUCTS_DATA } from '~/src/shared/constants/PRODUCTS'
+import { useProduct } from '~/src/features/Product/lib'
 
 const route = useRoute()
-const productId = computed(() => route.params.id)
-const product = computed(() => PRODUCTS_DATA.find(p => p.id === productId.value))
+const productId = computed(() => route.params.id as string)
+const product = useProduct(productId.value)
 const currentIndex = ref(0)
 
 function prevImage() {
