@@ -21,6 +21,9 @@
     width: 3rem;
     color: white;
     background-color: transparent;
+    @media (min-width: 1921px) {
+        width: 2.4vw;
+    }
 }
 
 .header{
@@ -46,6 +49,10 @@
     
     @media (max-width: 480px) {
         font-size: 0.8rem;
+    }
+
+    @media (min-width: 1921px) {
+        font-size: 0.8vw;
     }
 }
 
@@ -74,7 +81,11 @@
     @media (max-width: 480px) {
         padding: 0.5rem 0.5rem;
     }
-    
+
+    @media (min-width: 1921px) {
+        padding: 0.4vw 4vw;
+    }
+
     &__links{
         display: flex;
         column-gap: 2rem;
@@ -94,6 +105,11 @@
         @media (max-width: 480px) {
             column-gap: 0.5rem;
             row-gap: 0.5rem;
+        }
+
+        @media (min-width: 1921px) {
+            column-gap: 1.6vw;
+            row-gap: 1.6vw;
         }
     }
 
@@ -129,6 +145,11 @@
             font-size: 1rem;
             gap: 0.4rem;
         }
+
+        @media (min-width: 1921px) {
+            font-size: 1.2vw;
+            gap: 0.8vw;
+        }
     }
 }
 
@@ -159,6 +180,11 @@
     @media (max-width: 480px) {
         font-size: 0.8rem;
         padding: 0.25rem 0.5rem;
+    }
+
+    @media (min-width: 1921px) {
+        font-size: 0.8vw;
+        padding: 0.4vw 0.8vw;
     }
 }
 </style>

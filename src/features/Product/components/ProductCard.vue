@@ -1,23 +1,19 @@
 <template>    
         <div class="product-card">
-            <NuxtImg
-                v-if="images && images.length > 0"
-                :src="`/images/${images[0]}.png`"
-                fit="cover"
-                width="320"
-                height="240"
-                alt="product image"
-            />
-            <NuxtImg
-                v-else
-                src="/images/pallete.png"
-                fit="cover"
-                width="320"
-                height="240"
-                alt="product image"
-            />
+            <div class="product-card__image-wrapper">
+                <NuxtImg
+                    v-if="images && images.length > 0"
+                    :src="getImageUrl(images[0])"
+                    alt="product image"
+                />
+                <NuxtImg
+                    v-else
+                    src="/images/pallete.png"
+                    alt="product image"
+                />
+            </div>
             <div class="product-card__title">{{ title }}</div>
-            <div class="product-card__description">{{ description }}</div>
+            <div class="product-card__description">{{ shortDescription }}</div>
             <NuxtLink :to="`/product/${id}`" class="product-card-link">
                 <button>Подробнее</button>
             </NuxtLink>
@@ -25,16 +21,24 @@
 </template>
 
 <script setup lang="ts">
+const VITE_S3_URL = import.meta.env.VITE_S3_URL
 withDefaults(defineProps<{
     id?: string,
     title?: string,
     images?: string[],
-    description?: string
+    shortDescription?: string
 }>(), {
     title: 'Не удалось загрузить',
     images: () => ['/images/pallete.png'],
-    description: ''
+    shortDescription: ''
 })
+
+const getImageUrl = (image: string) => {
+    if(VITE_S3_URL) {
+        return `${VITE_S3_URL}/images/${image}.png`
+    }
+    return `/images/${image}.png`
+}
 </script>
 
 <style lang="scss" scoped>
@@ -70,6 +74,7 @@ withDefaults(defineProps<{
         margin-top: 2.4vw;
         height: 30vw;
         max-width: 25vw;
+        row-gap: 0.8vw;
     }
     
     @media (max-width: 1440px) {
@@ -77,6 +82,7 @@ withDefaults(defineProps<{
         height: 32rem;
         padding: 1.2rem;
         margin: 0.8rem;
+        row-gap: 0.75rem;
     }
     
     @media (max-width: 1024px) {
@@ -84,6 +90,7 @@ withDefaults(defineProps<{
         margin: 0.6rem;
         height: 28rem;
         max-width: 18rem;
+        row-gap: 0.5rem;
     }
     
     @media (max-width: 768px) {
@@ -125,16 +132,15 @@ withDefaults(defineProps<{
         height: 3.2em;
         line-height: 1.4;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: flex-start;
         overflow: hidden;
-        margin-top: 0.5rem;
+        height: auto;
         color: rgba(0, 0, 0, 0.87);
         
         @media (min-width: 1921px) {
-            padding: 0.8vw 0;
+            padding: 0.64vw 0;
             font-size: 1.2vw;
-            height: 3.2em;
         }
         
         @media (max-width: 1440px) {
@@ -150,25 +156,22 @@ withDefaults(defineProps<{
         @media (max-width: 768px) {
             font-size: 1rem;
             padding: 0.5rem 0;
-            height: 2.8em;
         }
         
         @media (max-width: 480px) {
             font-size: 1rem;
             padding: 0.5rem 0;
-            height: 2.8em;
         }
         
         @media (max-width: 375px) {
             font-size: 0.9rem;
             padding: 0.4rem 0;
-            height: 2.6em;
+            
         }
         
         @media (max-width: 320px) {
             font-size: 0.85rem;
             padding: 0.3rem 0;
-            height: 2.4em;
         }
     }
     
@@ -188,8 +191,8 @@ withDefaults(defineProps<{
         word-wrap: break-word;
         
         @media (min-width: 1921px) {
-            font-size: .8vw;
-            max-height: 4rem;
+            font-size: 0.8vw;
+            max-height: 3.2vw;
         }
         
         @media (max-width: 1440px) {
@@ -275,31 +278,30 @@ withDefaults(defineProps<{
         }
     }
     
-    .nuxt-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+    .product-card__image-wrapper {
         width: 100%;
-        height: auto;
-        max-width: 100%;
-        flex-shrink: 0;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
         border-radius: $borderRadius;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        @media (min-width: 1921px) {
+            margin-bottom: 0.8vw;
+            border-radius: 0.8vw;
+        }
+    }
+    
+    .product-card__image-wrapper .nuxt-img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        display: block;
         
-        @media (max-width: 768px) {
-            max-height: 120px;
-        }
-        
-        @media (max-width: 480px) {
-            max-height: 110px;
-        }
-        
-        @media (max-width: 375px) {
-            max-height: 100px;
-        }
-        
-        @media (max-width: 320px) {
-            max-height: 90px;
+        @media (min-width: 1921px) {
+            border-radius: 0.8vw;
         }
     }
 }    

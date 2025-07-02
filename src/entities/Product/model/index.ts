@@ -3,5 +3,6 @@ export type IVesi = {
     images?: string[];
     title: string;
     description: string;
+    shortDescription: string;
     additionalInfo?: string
 }

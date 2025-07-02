@@ -44,6 +44,10 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   @media (max-width: 768px) {
     padding: 2rem 0;
   }
+  
+  @media (min-width: 1921px) {
+    padding: 2.4vw 0;
+  }
 }
 
 .contacts-card {
@@ -73,6 +77,12 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   @media (max-width: 480px) {
     padding: 0.2rem;
     max-width: 95%;
+  }
+  
+  @media (min-width: 1921px) {
+    padding: 1.12vw;
+    max-width: 64vw;
+    border-radius: 0.64vw;
   }
 }
 
@@ -108,6 +118,11 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
       font-size: 1.4rem;
       margin-bottom: 1rem;
     }
+    
+    @media (min-width: 1921px) {
+      font-size: 1.6vw;
+      margin-bottom: 1.6vw;
+    }
   }
 }
 
@@ -122,6 +137,11 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  
+  @media (min-width: 1921px) {
+    gap: 1.2vw;
+    grid-template-columns: repeat(auto-fit, minmax(28vw, 1fr));
   }
 }
 
@@ -144,6 +164,12 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
     padding: 0.8rem;
     gap: 0.8rem;
   }
+  
+  @media (min-width: 1921px) {
+    padding: 0.8vw;
+    border-radius: 0.32vw;
+    gap: 0.4vw;
+  }
 }
 
 .contact-label {
@@ -155,6 +181,11 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   @media (max-width: 768px) {
     min-width: 80px;
     font-size: 1rem;
+  }
+  
+  @media (min-width: 1921px) {
+    min-width: 8vw;
+    font-size: 0.88vw;
   }
 }
 
@@ -173,6 +204,10 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   @media (max-width: 768px) {
     font-size: 1rem;
   }
+  
+  @media (min-width: 1921px) {
+    font-size: 0.88vw;
+  }
 }
 
 .contact-text {
@@ -182,6 +217,10 @@ const address = 'г. Казань, ул. Маршала Чуйкова 15'
   
   @media (max-width: 768px) {
     font-size: 1rem;
+  }
+  
+  @media (min-width: 1921px) {
+    font-size: 0.88vw;
   }
 }
 </style>

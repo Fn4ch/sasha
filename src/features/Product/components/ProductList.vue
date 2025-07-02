@@ -11,7 +11,7 @@
                 :id="p.id"
                 :images="p.images" 
                 :title="p.title" 
-                :description="p.description" 
+                :shortDescription="p.shortDescription" 
             />
         </section>
     </article>

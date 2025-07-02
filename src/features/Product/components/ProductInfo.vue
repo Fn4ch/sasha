@@ -7,10 +7,12 @@
         />
         <div class="title">
             <h1>Весы</h1>
+            <h3>ООО «Весы» — надежный партнер в весовом оборудовании с 2006 года</h3>
+            <h4>
+                Cпециализируемся на весовом оборудовании более 17 лет
+            </h4>
             <h5>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. 
+                Предоставляем полный цикл услуг: продажа, монтаж, модернизация, сервисное и гарантийное обслуживание, подготовка к поверке — автомобильных, вагонных, платформенных, крановых и других весов.  
             </h5>
         </div>
     </div>
@@ -106,11 +108,14 @@ onBeforeUnmount(() => {
 .title{
     background-color: transparent;
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: flex-start;
-    margin-left: 6rem;
+    padding: 5rem 3rem 0 3rem;
     width: 100%;
+    height: 100%;
+    letter-spacing: 0.05rem;
+    @media (min-width: 1921px) {
+        padding: 4vw 2.4vw 0 2.4vw;
+        letter-spacing: 0.04vw;
+    }
     h1 {
         font-size: 4rem;
         font-weight: 300;
@@ -118,6 +123,10 @@ onBeforeUnmount(() => {
         color: white;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         margin: 0 0 1rem 0;
+        @media (min-width: 1921px) {
+            font-size: 3.2vw;
+            margin: 0 0 0.64vw 0;
+        }
         @media (max-width: 1024px) {
             font-size: 2.5rem;
             margin: 0 0 0.8rem 0;
@@ -132,11 +141,17 @@ onBeforeUnmount(() => {
         }
     }
     h3{
+        max-width: 65%;
         font-size: 2rem;
         letter-spacing: -1px;
         color: white;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         margin: 0 0 1rem 0;
+        @media (min-width: 1921px) {
+            font-size: 1.6vw;
+            margin: 0 0 0.8vw 0;
+            max-width: 52vw;
+        }
         @media (max-width: 1024px) {
             font-size: 1.5rem;
             margin: 0 0 0.8rem 0;
@@ -150,14 +165,43 @@ onBeforeUnmount(() => {
             margin: 0 0 0.4rem 0;
         }
     }
+    h4{
+        font-size: 1.75rem;
+        color: $colorWhite;
+        justify-self: flex-end;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 5rem 3rem;
+        @media (min-width: 1921px) {
+            font-size: 1.4vw;
+            padding: 3.2vw 2.4vw;
+        }
+        @media (max-width: 1024px) {
+            font-size: 1.2rem;
+            padding: 3rem 1.5rem;
+        }
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            padding: 2rem 1rem;
+        }
+        @media (max-width: 480px) {
+            font-size: 0.9rem;
+            padding: 1rem 0.5rem;
+        }
+    }
     h5{
         max-width: 50%;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         letter-spacing: -1px;
         color: white;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         margin: 0;
         line-height: 1.4;
+        @media (min-width: 1921px) {
+            font-size: 1vw;
+            max-width: 40vw;
+        }
         @media (max-width: 1024px) {
             max-width: 65%;
             font-size: 1.2rem;

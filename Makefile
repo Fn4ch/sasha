@@ -1,13 +1,19 @@
+ifneq (,$(wildcard .env))
+    include .env
+    export
+endif
+
 .PHONY: env build all up run down push pull clean logs restart status health
 
 APP_PORT ?= 80
 REGISTRY_IMAGE ?= vesi
 PROJECT_NAME ?= vesi-kazan
 VERSION ?= latest
+VITE_S3_URL ?= https://fnach.s3.cloud.ru/
 
 # Сборка Docker-образа
 build:
-	docker build -t $(REGISTRY_IMAGE):$(VERSION) .
+	docker build --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
 
 # Загрузка образа в реестр
 push:
@@ -21,6 +27,7 @@ pull:
 up: down
 	docker run --name $(PROJECT_NAME) \
 	-p $(APP_PORT):80 \
+	-e VITE_S3_URL=$(VITE_S3_URL) \
 	--restart unless-stopped \
 	--detach \
 	$(REGISTRY_IMAGE):$(VERSION)
@@ -34,6 +41,7 @@ stop:
 run:
 	docker run --rm -it \
 	-p 127.0.0.1:$(APP_PORT):80 \
+	-e VITE_S3_URL=$(VITE_S3_URL) \
 	$(REGISTRY_IMAGE):$(VERSION)
 
 # Просмотр логов

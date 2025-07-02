@@ -52,6 +52,9 @@ const currentYear = new Date().getFullYear()
   @media (max-width: 768px) {
     width: 80px;
   }
+  @media (min-width: 1921px) {
+    max-width: 12.48vw;
+  }
 }
 
 .footer {
@@ -62,6 +65,10 @@ const currentYear = new Date().getFullYear()
   color: rgba(255, 255, 255, 0.87); // Material Design text on dark
   padding: 2rem 3rem;
   @extend %materialTransition;
+  @media (min-width: 1921px) {
+    padding: 1.6vw 2.4vw;
+    font-size: 1vw;
+  }
 
   span{
     background-color: transparent;
@@ -81,6 +88,9 @@ const currentYear = new Date().getFullYear()
     min-height: 96px;
     max-width: 100%;
     box-sizing: border-box;
+    @media (min-width: 1921px) {
+      min-height: 7.68vw;
+    }
 
     @media (min-width: 768px) {
       justify-content: space-between;
@@ -102,6 +112,9 @@ const currentYear = new Date().getFullYear()
     align-items: center;
     background-color: transparent;
     column-gap: 2rem;
+    @media (min-width: 1921px) {
+      column-gap: 1.6vw;
+    }
 
     &_logo{
       background-color: transparent;
@@ -113,6 +126,9 @@ const currentYear = new Date().getFullYear()
         color: $colorOrange;
         font-size: 1.5rem;
         font-weight: 500;
+        @media (min-width: 1921px) {
+          font-size: 1.2vw;
+        }
       }
       @media (max-width: 768px) {
         display: none;
@@ -130,6 +146,10 @@ const currentYear = new Date().getFullYear()
       margin-bottom: 0.5rem;
       color: $colorGreen;
       font-weight: 500;
+      @media (min-width: 1921px) {
+        font-size: 0.88vw;
+        margin-bottom: 0.4vw;
+      }
     }
 
     &__item{
@@ -156,6 +176,10 @@ const currentYear = new Date().getFullYear()
       flex-direction: column;
       gap: 0.4rem;
       font-size: 1rem;
+      @media (min-width: 1921px) {
+        gap: 0.32vw;
+        font-size: 0.8vw;
+      }
 
       a {
         text-decoration: none;
@@ -179,6 +203,11 @@ const currentYear = new Date().getFullYear()
     margin-top: auto;
     opacity: 0.7;
     background-color: transparent;
+    @media (min-width: 1921px) {
+      font-size: 0.8vw;
+      row-gap: 0.4vw;
+      column-gap: 0.4vw;
+    }
 
     @media (max-width: 768px) {
       font-size: small;

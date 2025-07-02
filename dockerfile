@@ -9,6 +9,8 @@ RUN yarn install --frozen-lockfile --production
 FROM base AS build
 ARG NUXT_APP_ENV
 ENV NUXT_APP_ENV=$NUXT_APP_ENV
+ARG VITE_S3_URL
+ENV VITE_S3_URL=$VITE_S3_URL
 RUN corepack enable
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -18,6 +20,8 @@ RUN yarn build
 FROM base AS production
 WORKDIR /app
 
+ARG VITE_S3_URL
+ENV VITE_S3_URL=$VITE_S3_URL
 RUN apk add --no-cache nginx curl && \
     mkdir -p /run/nginx && \
     chown -R nginx:nginx /run/nginx
