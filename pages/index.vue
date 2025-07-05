@@ -1,5 +1,4 @@
 <template>
-<div>
     <Head>
         <meta name="keywords" content="весы Казань, продажа весов, установка весов, промышленные весы, торговые весы, лабораторные весы, весы оборудование, весы для машин">
         <meta name="robots" content="index, follow">
@@ -13,14 +12,14 @@
         <meta property="og:image" content="https://www.vesiobr.ru/preview-image.jpg">
         <meta property="og:url" content="https://www.vesiobr.ru/">
     </Head>
-    <ProductInfo />
-    <ProductList />
-</div>
+    <div>
+        <ProductInfo />
+        <ProductList />
+        <Contacts />
+    </div>
 </template>
 
 <script setup lang="ts">
-
+import { ProductList, ProductInfo } from '~/src/features/Product'
+import Contacts from '~/src/widgets/Contacts.vue'
 </script>
-
-<style lang="scss">
-</style>

@@ -9,6 +9,8 @@ RUN yarn install --frozen-lockfile --production
 FROM base AS build
 ARG NUXT_APP_ENV
 ENV NUXT_APP_ENV=$NUXT_APP_ENV
+ARG VITE_S3_URL
+ENV VITE_S3_URL=$VITE_S3_URL
 RUN corepack enable
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -18,26 +20,21 @@ RUN yarn build
 FROM base AS production
 WORKDIR /app
 
-# Установка Nginx с открытием порта
-RUN apk add --no-cache nginx && \
+ARG VITE_S3_URL
+ENV VITE_S3_URL=$VITE_S3_URL
+RUN apk add --no-cache nginx curl && \
     mkdir -p /run/nginx && \
     chown -R nginx:nginx /run/nginx
 
-# Копирование файлов приложения
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/public ./public
 
-# Копирование конфига Nginx
 COPY nginx.conf.template /etc/nginx/http.d/default.conf
-
-# Настройка прав
-RUN chown -R nginx:nginx /app && \
-    chmod -R 755 /app && \
-    ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
 
-# Команда запуска
 CMD ["sh", "-c", "node .output/server/index.mjs & exec nginx -g 'daemon off;'"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:80/ || exit 1

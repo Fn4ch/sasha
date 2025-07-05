@@ -49,11 +49,26 @@ const currentYear = new Date().getFullYear()
 .logo{
   background-color: transparent;
   max-width: 156px;
+  @media (max-width: 768px) {
+    width: 80px;
+  }
+  @media (min-width: 1921px) {
+    max-width: 12.48vw;
+  }
 }
+
 .footer {
-  background-color: $colorBlack;
-  color: $colorWhite;
-  padding: 1rem 3rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #212121; // Material Design dark theme
+  color: rgba(255, 255, 255, 0.87); // Material Design text on dark
+  padding: 2rem 3rem;
+  @extend %materialTransition;
+  @media (min-width: 1921px) {
+    padding: 1.6vw 2.4vw;
+    font-size: 1vw;
+  }
 
   span{
     background-color: transparent;
@@ -66,15 +81,19 @@ const currentYear = new Date().getFullYear()
   &__container {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     
-    background-color: $colorBlack;
-    color: $colorWhite;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
     min-height: 96px;
+    max-width: 100%;
+    box-sizing: border-box;
+    @media (min-width: 1921px) {
+      min-height: 7.68vw;
+    }
 
     @media (min-width: 768px) {
-      flex-direction: row;
       justify-content: space-between;
-      text-align: left;
     }
   }
 
@@ -83,8 +102,8 @@ const currentYear = new Date().getFullYear()
     img {
       height: 40px;
       width: auto;
-      background-color: $colorBlack;
-      color: $colorWhite;
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.87);
     }
   }
 
@@ -93,6 +112,9 @@ const currentYear = new Date().getFullYear()
     align-items: center;
     background-color: transparent;
     column-gap: 2rem;
+    @media (min-width: 1921px) {
+      column-gap: 1.6vw;
+    }
 
     &_logo{
       background-color: transparent;
@@ -103,28 +125,45 @@ const currentYear = new Date().getFullYear()
       span{
         color: $colorOrange;
         font-size: 1.5rem;
+        font-weight: 500;
+        @media (min-width: 1921px) {
+          font-size: 1.2vw;
+        }
+      }
+      @media (max-width: 768px) {
+        display: none;
       }
     }
   }
 
   .contacts {
-    background-color: $colorBlack;
-    color: $colorWhite;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
+    
     &__title {
       background-color: transparent;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: $colorGreen;
+      font-weight: 500;
+      @media (min-width: 1921px) {
+        font-size: 0.88vw;
+        margin-bottom: 0.4vw;
+      }
     }
 
     &__item{
       background-color: transparent;
 
-
       a{ 
         background-color: transparent;
         text-decoration: none;
-        color: $colorWhite;
+        color: rgba(255, 255, 255, 0.87);
+        @extend %materialTransition;
+        
+        &:hover {
+          color: $colorGreen;
+        }
       }
     }
 
@@ -137,13 +176,20 @@ const currentYear = new Date().getFullYear()
       flex-direction: column;
       gap: 0.4rem;
       font-size: 1rem;
+      @media (min-width: 1921px) {
+        gap: 0.32vw;
+        font-size: 0.8vw;
+      }
 
       a {
         text-decoration: none;
-        transition: color 0.3s ease;
+        @extend %materialTransition;
+        padding: 0.25rem 0;
+        border-radius: $borderRadius;
 
         &:hover {
           color: $colorGreen;
+          background-color: rgba(255, 255, 255, 0.05);
         }
       }
     }
@@ -156,7 +202,16 @@ const currentYear = new Date().getFullYear()
     column-gap: 0.5rem;
     margin-top: auto;
     opacity: 0.7;
-    background-color: $colorBlack;
+    background-color: transparent;
+    @media (min-width: 1921px) {
+      font-size: 0.8vw;
+      row-gap: 0.4vw;
+      column-gap: 0.4vw;
+    }
+
+    @media (max-width: 768px) {
+      font-size: small;
+    }
 
     &__site{
       display: flex;
@@ -173,10 +228,13 @@ const currentYear = new Date().getFullYear()
       color: $colorGreen;
       text-decoration: none;
       font-weight: 500;
-      
+      @extend %materialTransition;
+      padding: 0.25rem 0;
+      border-radius: $borderRadius;
 
       &:hover {
         text-decoration: underline;
+        background-color: rgba(76, 175, 80, 0.1);
       }
     }
   }
