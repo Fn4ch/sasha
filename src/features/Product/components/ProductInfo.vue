@@ -18,13 +18,12 @@
         
         <section class="hero-content">
             <div class="hero-text">
-                <div class="hero-badge">
+                <!--<div class="hero-badge">
                     <span>С 2006 года</span>
-                </div>
+                </div>-->
                 
                 <h1 class="hero-title">
                     <span class="title-line">Весы</span>
-                    <span class="title-accent">Казань</span>
                 </h1>
                 
                 <p class="hero-subtitle">
@@ -90,7 +89,7 @@ const scrollToCatalog = () => {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%; 
+    height: calc(100vh - 96px); 
     overflow: hidden;
     margin-top: 96px;
     padding: 1.5rem 0;
@@ -166,13 +165,10 @@ const scrollToCatalog = () => {
     object-fit: cover;
     display: block;
     position: absolute;
-    left: 50%;
     top: 0;
-    transform: translateX(-50%);
-    max-height: calc(100vh - 96px);
     
     @media (max-width: 1920px) {
-        max-height: calc(95vh - 90px);
+        max-height: calc(100vh - 90px);
     }
     
     @media (max-width: 1440px) {

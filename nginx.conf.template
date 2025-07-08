@@ -1,6 +1,23 @@
 server {
     listen 80;
-    server_name _;
+    server_name vesy16.ru www.vesy16.ru;
+
+    location /.well-known/acme-challenge/ {
+        root /public;
+        try_files $uri $uri/ =404;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name vesy16.ru www.vesy16.ru;
+
+    ssl_certificate /etc/letsencrypt/live/vesy16.ru/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/vesy16.ru/privkey.pem;
     
     location / {
         proxy_pass http://127.0.0.1:3000;

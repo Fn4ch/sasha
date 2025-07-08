@@ -3,7 +3,6 @@
         <nav class="navigation">
             <div class="navigation__logo" @click="$router.push('/')">
                 <img src="@/assets/logo.svg" alt="Логотип ООО Весы" class="logo" loading="eager" fetchpriority="high">
-                <span class="company-name">ООО "Весы"</span>
             </div>
             <div class="navigation__links">
                 <button class="nav-link" @click="scrollToCatalog">
