@@ -39,10 +39,25 @@ stop:
 
 # Запуск контейнера в интерактивном режиме (для отладки)
 run:
-	docker run --rm -it \
-	-p 127.0.0.1:$(APP_PORT):80 \
+	docker run --name $(PROJECT_NAME) \
+	-p 80:80 -p 443:443 \
+	-v /home/user1/letsencrypt:/etc/letsencrypt \
+	-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
+	-v /home/user1/public:/public \
 	-e VITE_S3_URL=$(VITE_S3_URL) \
-	$(REGISTRY_IMAGE):$(VERSION)
+	--restart unless-stopped \
+	-d $(REGISTRY_IMAGE):$(VERSION)
+
+certbot-init:
+	docker stop $(PROJECT_NAME) || true
+	docker run --rm \
+		-v $(CURDIR)/letsencrypt:/etc/letsencrypt \
+		-v $(CURDIR)/letsencrypt-lib:/var/lib/letsencrypt \
+		-v $(CURDIR)/public:/public \
+		certbot/certbot certonly --webroot -w /public \
+		-d vesy16.ru -d www.vesy16.ru \
+		--email youremail@example.com --agree-tos --no-eff-email --force-renewal --non-interactive
+	docker start $(PROJECT_NAME)
 
 # Просмотр логов
 logs:
