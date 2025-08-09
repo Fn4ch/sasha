@@ -14,19 +14,24 @@ wait_for() {
   echo "$1 доступен"
 }
 
-# Функция: запуск Nginx
-start_nginx() {
-  echo "Запуск Nginx..."
-  nginx -g "daemon off;" &
-  wait_for "Nginx" 80
-}
+echo "🚀 Запуск entrypoint.sh" >&2
+echo "DOMAIN=$DOMAIN" >&2
 
-# Функция: остановка Nginx
-stop_nginx() {
-  echo "Остановка Nginx..."
-  nginx -s stop || true
-  sleep 2
-}
+# Проверка Nginx
+if ! nginx -t; then
+  echo "❌ Ошибка конфигурации Nginx" >&2
+  exit 1
+fi
+
+echo "✅ Nginx конфиг OK" >&2
+
+# Запуск Nuxt
+echo "🔥 Запуск Nuxt..." >&2
+node .output/server/index.mjs &
+
+# Запуск Nginx
+echo "🌐 Запуск Nginx..." >&2
+exec nginx -g "daemon off;"
 
 # === Шаг 1: Запускаем временный HTTP-сервер для /acme-challenge ===
 echo "🚀 Запуск временного HTTP-сервера для получения SSL..."

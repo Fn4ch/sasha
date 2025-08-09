@@ -27,19 +27,18 @@ ARG VITE_S3_URL
 ENV VITE_S3_URL=$VITE_S3_URL
 
 # Установка Nginx, Certbot, cron
-RUN apk add --no-cache nginx certbot certbot-nginx openrc && \
+RUN apk add --no-cache nginx certbot openrc && \
     mkdir -p /run/nginx /var/www/certbot && \
     chown -R node:node /var/www/certbot && \
-    chown -R node:node /etc/letsencrypt 2>/dev/null || true && \
-    mkdir -p /etc/nginx/conf.d
+    chown -R node:node /etc/letsencrypt 2>/dev/null || true
 
 # Копируем артефакты
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/public ./public
 
-# Копируем Nginx конфиг
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Копируем конфиг Nginx (как основной)
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Копируем entrypoint
 COPY entrypoint.sh /entrypoint.sh
@@ -49,7 +48,6 @@ RUN chmod +x /entrypoint.sh
 RUN chown -R node:node /app && \
     chown -R node:node /run/nginx
 
-# Переключаемся на пользователя node (безопасность)
 USER node
 
 EXPOSE 80
@@ -58,4 +56,4 @@ EXPOSE 443
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost/ || exit 1
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
