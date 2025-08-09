@@ -56,8 +56,4 @@ EXPOSE 443
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost/ || exit 1
 
-# Сброс inherited ENTRYPOINT (ключевая строка!)
-ENTRYPOINT []
-
-# Теперь устанавливаем свой
 ENTRYPOINT ["/entrypoint.sh"]
