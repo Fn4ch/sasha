@@ -37,7 +37,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/public ./public
 
-# Копируем конфиг Nginx (как основной)
+# Копируем конфиг Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Копируем entrypoint
@@ -56,4 +56,8 @@ EXPOSE 443
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost/ || exit 1
 
+# Сброс inherited ENTRYPOINT (ключевая строка!)
+ENTRYPOINT []
+
+# Теперь устанавливаем свой
 ENTRYPOINT ["/entrypoint.sh"]
