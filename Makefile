@@ -26,12 +26,12 @@ pull:
 # Запуск контейнера с улучшениями
 up: down
 	docker run --name $(PROJECT_NAME) \
-	-p $(APP_PORT):80 \
-	-e VITE_S3_URL=$(VITE_S3_URL) \
-	--restart unless-stopped \
-	--detach \
-	$(REGISTRY_IMAGE):$(VERSION)
-
+		-p 80:80 \
+		-p 443:443 \
+		-e VITE_S3_URL=$(VITE_S3_URL) \
+		--restart unless-stopped \
+		--detach \
+		$(REGISTRY_IMAGE):$(VERSION)
 # Остановка контейнера
 stop:
 	docker stop $(PROJECT_NAME) 2>/dev/null || true
