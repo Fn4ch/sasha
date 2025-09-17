@@ -29,7 +29,7 @@ COPY --from=build /app/.output ./.output
 COPY --from=build /app/public ./public
 
 # Копирование конфига Nginx
-COPY nginx.conf.template /etc/nginx/http.d/default.conf
+COPY nginx.conf /etc/nginx/http.d/default.conf
 
 # Настройка прав
 RUN chown -R nginx:nginx /app && \
