@@ -18,8 +18,8 @@ RUN yarn build
 FROM base AS production
 WORKDIR /app
 
-# Установка Nginx с открытием порта
-RUN apk add --no-cache nginx && \
+# Установка Nginx и certbot с открытием портов
+RUN apk add --no-cache nginx curl certbot certbot-nginx && \
     mkdir -p /run/nginx && \
     chown -R nginx:nginx /run/nginx
 
@@ -28,7 +28,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/public ./public
 
-# Копирование конфига Nginx
 COPY nginx.conf /etc/nginx/http.d/default.conf
 
 # Настройка прав
@@ -38,6 +37,7 @@ RUN chown -R nginx:nginx /app && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
+EXPOSE 443
 
 # Команда запуска
 CMD ["sh", "-c", "node .output/server/index.mjs & exec nginx -g 'daemon off;'"]
