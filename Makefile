@@ -113,17 +113,7 @@ backup:
 update: stop clean build up
 	@echo "✅ Приложение обновлено!"
 
-# Получение SSL сертификата (первый запуск)
-certbot-init:
-	docker stop $(PROJECT_NAME) || true
-	docker run --rm \
-		-v /home/user1/letsencrypt:/etc/letsencrypt \
-		-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
-		-v /home/user1/public:/public \
-		certbot/certbot certonly --webroot -w /public \
-		-d vesy16.ru -d www.vesy16.ru \
-		--email cfrios2002@yandex.ru --agree-tos --no-eff-email --force-renewal --non-interactive
-	docker start $(PROJECT_NAME)
+
 
 # Информация о проекте
 info:
