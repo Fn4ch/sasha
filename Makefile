@@ -13,7 +13,7 @@ VITE_S3_URL ?= https://fnach.s3.cloud.ru/
 
 # Сборка Docker-образа
 build:
-	docker build --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
+	docker build --no-cache --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
 
 # Загрузка образа в реестр
 push:
