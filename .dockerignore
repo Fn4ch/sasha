@@ -53,4 +53,3 @@ temp/
 # SSL certificates (mounted as volumes)
 letsencrypt/
 letsencrypt-lib/
-public/ 

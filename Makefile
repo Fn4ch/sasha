@@ -13,7 +13,7 @@ VITE_S3_URL ?= https://fnach.s3.cloud.ru/
 
 # Сборка Docker-образа
 build:
-	docker build --no-cache --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
+	docker build --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
 
 # Загрузка образа в реестр
 push:
@@ -52,15 +52,14 @@ run:
 	-d $(REGISTRY_IMAGE):$(VERSION)
 
 certbot-init:
-	docker stop $(PROJECT_NAME) || true
+	# Выпуск сертификата через webroot без остановки контейнера
 	docker run --rm \
-		-v $(CURDIR)/letsencrypt:/etc/letsencrypt \
-		-v $(CURDIR)/letsencrypt-lib:/var/lib/letsencrypt \
-		-v $(CURDIR)/public:/public \
+		-v /home/user1/letsencrypt:/etc/letsencrypt \
+		-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
+		-v /home/user1/public:/public \
 		certbot/certbot certonly --webroot -w /public \
 		-d vesy16.ru -d www.vesy16.ru \
 		--email cfrios2002@yandex.ru --agree-tos --no-eff-email --force-renewal --non-interactive
-	docker start $(PROJECT_NAME)
 
 # Просмотр логов
 logs:
