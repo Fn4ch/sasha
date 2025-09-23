@@ -8,7 +8,7 @@
             <ProductCard 
                 v-for="(p, index) in PRODUCTS_DATA" 
                 :key="p.title"
-                :image="p.image" 
+                :image="p.images[0] || ''" 
                 :title="p.title" 
                 :description="p.description" 
                 :class="index % 2 === 1 ? 'products-list__left' : 'products-list__right'"/>

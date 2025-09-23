@@ -2,7 +2,7 @@
         <div class="product-card">
             <div class="product-card__image-wrapper">
                 <NuxtImg
-                    :src="getImageUrl(images[0])"
+                    :src="getImageUrl(images)"
                     :alt="`${title} - изображение товара`"
                     loading="lazy"
                     format="webp"
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { getImageFromS3 } from '~/src/shared/lib/utils/getImageUrl';
+import { getImageFromS3 } from '~/src/shared/lib/utils/getImageUrl'
 withDefaults(defineProps<{
     id?: string,
     title?: string,
@@ -45,8 +45,8 @@ withDefaults(defineProps<{
     shortDescription: ''
 })
 
-const getImageUrl = (image: string) => {
-    return getImageFromS3(image)
+const getImageUrl = (images: string[]) => {
+    return getImageFromS3(images[0])
 }
 </script>
 
