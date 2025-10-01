@@ -9,9 +9,9 @@ APP_PORT ?= 80
 REGISTRY_IMAGE ?= vesi
 PROJECT_NAME ?= vesi-kazan
 VERSION ?= latest
-VITE_S3_URL ?= https://fnach.s3.cloud.ru/
-VITE_TELEGRAM_BOT_TOKEN ?= 8471517301:AAE6iVDdBNqCUwV9VxSMuGnDJ6D5KSP-87s
-VITE_TELEGRAM_CHAT_ID ?= 473894516
+VITE_S3_URL ?= 
+VITE_TELEGRAM_BOT_TOKEN ?= 
+VITE_TELEGRAM_CHAT_ID ?= 
 
 # Сборка Docker-образа
 build:
@@ -34,6 +34,8 @@ up: down
 		-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
 		-v /home/user1/public:/public \
 		-e VITE_S3_URL=$(VITE_S3_URL) \
+		-e TELEGRAM_BOT_TOKEN=$(TELEGRAM_BOT_TOKEN) \
+		-e TELEGRAM_CHAT_ID=$(TELEGRAM_CHAT_ID) \
 		--restart unless-stopped \
 		--detach \
 		$(REGISTRY_IMAGE):$(VERSION)

@@ -7,8 +7,12 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --production
 
 FROM base AS build
-ARG NUXT_APP_ENV
-ENV NUXT_APP_ENV=$NUXT_APP_ENV
+ARG VITE_S3_URL
+ARG TELEGRAM_BOT_TOKEN
+ARG TELEGRAM_CHAT_ID
+ENV VITE_S3_URL=$VITE_S3_URL
+ENV TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN
+ENV TELEGRAM_CHAT_ID=$TELEGRAM_CHAT_ID
 RUN corepack enable
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile

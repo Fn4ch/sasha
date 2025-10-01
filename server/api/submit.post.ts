@@ -10,8 +10,8 @@ export default defineEventHandler(async (event) => {
     return { error: 'Телефон обязательный' }
   }
 
-  const TELEGRAM_TOKEN = process.env.VITE_TELEGRAM_BOT_TOKEN
-  const TELEGRAM_CHAT_ID = process.env.VITE_TELEGRAM_CHAT_ID
+  const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN
+  const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
 
   if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
     console.error('❌ TELEGRAM_TOKEN или TELEGRAM_CHAT_ID не заданы')
