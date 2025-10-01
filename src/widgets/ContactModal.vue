@@ -85,12 +85,6 @@ interface Emits {
   (e: "submit", payload: { message: string; phone: string }): void;
 }
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    handleSubmit();
-  }
-})
-
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
