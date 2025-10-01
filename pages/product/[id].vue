@@ -183,6 +183,7 @@ import { FullscreenView } from '~/src/shared/ui'
 import ArrowLeft from '~/src/shared/lib/icons/ArrowLeft.vue'
 import ArrowRight from '~/src/shared/lib/icons/ArrowRight.vue'
 import { getImageFromS3 } from '~/src/shared/lib/utils/getImageUrl'
+import { useSeoMeta, useHead, useRequestURL } from '#imports'
 
 const route = useRoute()
 const productId = computed(() => route.params.id as string)
@@ -205,6 +206,54 @@ const canScrollRight = computed(() => {
 const fullscreenImages = computed(() => {
   if (!product.value?.images) return []
   return product.value.images.map(image => getImageFromS3(image))
+})
+
+// SEO meta based on product data
+const url = useRequestURL()
+const canonical = computed(() => new URL(`/product/${productId.value}`, url.origin).toString())
+const seoTitle = computed(() => product.value?.title ? `${product.value.title} | Весы Казань` : 'Товар | Весы Казань')
+const seoDescription = computed(() => product.value?.shortDescription || product.value?.description || 'Профессиональные весы: продажа, монтаж, сервис.')
+const seoImage = computed(() => {
+  const first = product.value?.images?.[0]
+  return first ? getImageFromS3(first) : '/images/logo.webp'
+})
+
+useSeoMeta({
+  title: () => seoTitle.value,
+  ogTitle: () => seoTitle.value,
+  description: () => seoDescription.value,
+  ogDescription: () => seoDescription.value,
+  ogImage: () => seoImage.value,
+  twitterCard: 'summary_large_image',
+  ogType: 'website'
+})
+
+useHead(() => {
+  const found = !!product.value
+  const ldProduct = found ? {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.value?.title,
+    description: seoDescription.value,
+    image: product.value?.images?.map(img => getImageFromS3(img)) || [],
+    url: canonical.value,
+    brand: {
+      '@type': 'Brand',
+      name: 'Весы Казань'
+    }
+  } : null
+
+  return {
+    link: [
+      { rel: 'canonical', href: canonical.value }
+    ],
+    meta: found ? [] : [
+      { name: 'robots', content: 'noindex, nofollow' }
+    ],
+    script: found && ldProduct ? [
+      { type: 'application/ld+json', children: JSON.stringify(ldProduct) }
+    ] : []
+  }
 })
 
 function scrollThumbnails(direction: 'left' | 'right') {

@@ -115,24 +115,28 @@ const getImageUrl = (images: string[]) => {
     
     @media (max-width: 768px) {
         height: 28rem;
-        max-width: 22rem;
-        margin: 0.4rem;
+        max-width: 100%;
+        width: 100%;
+        margin: 0.4rem 0;
     }
     
     @media (max-width: 480px) {
         height: 26rem;
-        max-width: 18rem;
-        margin: 0.4rem;
+        max-width: 100%;
+        width: 100%;
+        margin: 0.4rem 0;
     }
     
     @media (max-width: 375px) {
-        max-width: 16rem;
-        margin: 0.3rem;
+        max-width: 100%;
+        width: 100%;
+        margin: 0.3rem 0;
     }
     
     @media (max-width: 320px) {
-        max-width: 14rem;
-        margin: 0.2rem;
+        max-width: 100%;
+        width: 100%;
+        margin: 0.2rem 0;
     }
     
     &__content {
@@ -187,6 +191,7 @@ const getImageUrl = (images: string[]) => {
         line-height: 1.3;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -252,6 +257,7 @@ const getImageUrl = (images: string[]) => {
         flex: 1;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;

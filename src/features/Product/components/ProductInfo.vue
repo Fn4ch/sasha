@@ -58,17 +58,20 @@
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </button>
-                    <button class="cta-button secondary">
+                    <button class="cta-button secondary" @click="openContactModal">
                         <span>Связаться с нами</span>
                     </button>
                 </div>
             </div>
         </section>
+        <ContactModal v-model:isOpen="isContactOpen" @submit="onContactSubmit" />
     </header>
 </template>
 
 <script setup lang="ts">
 import { getImageFromS3 } from '~/src/shared/lib/utils/getImageUrl'
+import { ref } from 'vue'
+import ContactModal from '~/src/widgets/ContactModal.vue'
 
 const scrollToCatalog = () => {
   const catalogElement = document.getElementById('catalog')
@@ -79,6 +82,15 @@ const scrollToCatalog = () => {
     })
   }
 }
+
+const isContactOpen = ref(false)
+const openContactModal = () => { isContactOpen.value = true }
+const onContactSubmit = (payload: { message: string; phone: string }) => {
+  // noop here; submit is handled inside modal via mailto fallback
+  // you can hook analytics or API call here later
+  console.log('Contact request:', payload)
+}
+
 </script>
 
 <style lang="scss" scoped>

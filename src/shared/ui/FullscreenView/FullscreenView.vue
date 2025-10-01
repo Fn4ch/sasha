@@ -6,8 +6,7 @@
         <button class="close-btn" @click="closeModal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 6L6 18M6 6l12 12"/>
-          </svg>
-        </button>
+          </svg>        </button>
 
         <!-- Navigation arrows -->
         <button 
@@ -278,35 +277,27 @@ watch(() => props.initialIndex, (newValue) => {
   position: absolute;
   top: 2rem;
   right: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border: none;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: white;
+  color: #ffffff;
   z-index: 10;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-  }
-  
-  svg {
+
+  svg{
     width: 24px;
     height: 24px;
   }
   
+ 
+  
   @media (max-width: 768px) {
     top: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
-    
     svg {
       width: 20px;
       height: 20px;
@@ -513,8 +504,6 @@ watch(() => props.initialIndex, (newValue) => {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 8px;
-  width: 40px;
-  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -533,8 +522,8 @@ watch(() => props.initialIndex, (newValue) => {
   }
   
   svg {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
   
   @media (max-width: 768px) {
@@ -542,8 +531,8 @@ watch(() => props.initialIndex, (newValue) => {
     height: 36px;
     
     svg {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
     }
   }
 }
