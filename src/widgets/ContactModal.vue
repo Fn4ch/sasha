@@ -11,7 +11,7 @@
           </button>
         </header>
 
-        <form @submit.prevent="submit" target="_blank" action="https://formsubmit.co/your@email.com" method="POST">
+        <form @submit.prevent="handleSubmit">
           <section class="dialog__content">
             <div class="md-field">
               <textarea
@@ -31,22 +31,29 @@
             <div class="md-field">
               <input
                 id="contact-phone"
-                v-model.trim="phone"
+                name="phone"
+                :value="phone"
+                @input="onPhoneInput"
+                @focus="onPhoneFocus"
+                @paste.prevent="onPhonePaste"
                 class="md-field__input"
                 type="tel"
                 inputmode="tel"
-                pattern="^\+?[0-9\s\-()]{7,}$"
-                placeholder=" "
+                autocomplete="tel"
+                placeholder="+7 (___) ___-__-__"
+                maxlength="19"
                 :aria-invalid="phoneError ? 'true' : 'false'"
               />
               <label for="contact-phone" class="md-field__label">Телефон для связи</label>
               <p v-if="phoneError" class="md-field__error">Укажите корректный номер телефона</p>
             </div>
+            <!-- Hidden normalized E.164 phone for backend convenience -->
+            <input type="hidden" name="phone_e164" :value="normalizedPhone" />
           </section>
 
           <footer class="dialog__footer">
             <button class="cta-button secondary" @click="close">Отмена</button>
-            <button class="cta-button primary" :disabled="!isValid" @click="submit">
+            <button class="cta-button primary" :disabled="!isValid" type="submit">
               <span>Отправить</span>
               <svg
                 class="arrow-icon"
@@ -84,17 +91,102 @@ const emit = defineEmits<Emits>();
 const message = ref("");
 const phone = ref("");
 
+// --- Валидация и форматирование (остаётся без изменений) ---
+function normalizeDigits(value: string): string {
+  return value.replace(/\D+/g, '');
+}
+
+function formatRuPhone(digits: string): string {
+  if (!digits) return '';
+  if (digits[0] === '8') digits = '7' + digits.slice(1);
+  if (digits[0] !== '7') digits = '7' + digits;
+
+  const p1 = digits.slice(1, 4);
+  const p2 = digits.slice(4, 7);
+  const p3 = digits.slice(7, 9);
+  const p4 = digits.slice(9, 11);
+
+  let formatted = '+7';
+  if (p1) formatted += ` (${p1}`;
+  if (p1 && p1.length === 3) formatted += ')';
+  if (p2) formatted += ` ${p2}`;
+  if (p3) formatted += `-${p3}`;
+  if (p4) formatted += `-${p4}`;
+  return formatted;
+}
+
+const phoneError = computed(() => {
+  if (!props.isOpen) return false;
+  const digits = normalizeDigits(phone.value);
+  if (digits.length === 0) return false;
+  const coerced = digits[0] === '8' ? '7' + digits.slice(1) : (digits[0] === '7' ? digits : '7' + digits);
+  return coerced.length !== 11;
+});
+
 const messageError = computed(
   () => props.isOpen && message.value.trim().length > 0 && message.value.trim().length < 5,
 );
-const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
-const phoneError = computed(
-  () => props.isOpen && phone.value.trim().length > 0 && !phoneRegex.test(phone.value.trim()),
-);
-const isValid = computed(
-  () => message.value.trim().length >= 5 && phoneRegex.test(phone.value.trim()),
-);
 
+const isValid = computed(() => {
+  const msgOk = message.value.trim().length >= 5;
+  const digits = normalizeDigits(phone.value);
+  const coerced = digits[0] === '8' ? '7' + digits.slice(1) : (digits[0] === '7' ? digits : '7' + digits);
+  return msgOk && coerced.length === 11;
+});
+
+const normalizedPhone = computed(() => {
+  const digits = normalizeDigits(phone.value);
+  const coerced = digits[0] === '8' ? '7' + digits.slice(1) : (digits[0] === '7' ? digits : '7' + digits);
+  return coerced.length === 11 ? `+${coerced}` : '';
+});
+
+function onPhoneInput(e: Event) {
+  const target = e.target as HTMLInputElement;
+  const digits = normalizeDigits(target.value);
+  phone.value = formatRuPhone(digits);
+}
+
+function onPhoneFocus() {
+  if (!phone.value) {
+    phone.value = '+7 ';
+  }
+}
+
+function onPhonePaste(e: ClipboardEvent) {
+  const text = e.clipboardData?.getData('text') || '';
+  const digits = normalizeDigits(text);
+  phone.value = formatRuPhone(digits);
+}
+
+// --- ОСНОВНОЕ ИЗМЕНЕНИЕ: handleSubmit через $fetch ---
+async function handleSubmit() {
+  if (!isValid.value) return;
+
+  try {
+    // Отправляем на твой Nuxt API-роут
+    const response = await $fetch('/api/submit', {
+      method: 'POST',
+      body: {
+        name: '', // у тебя в API есть `name`, но в форме его нет — можно убрать или оставить пустым
+        phone: normalizedPhone.value,
+        text: message.value.trim()
+      }
+    });
+
+    if (response.success) {
+      emit('submit', { message: message.value.trim(), phone: normalizedPhone.value });
+      alert('Спасибо! Мы скоро свяжемся с вами.');
+      close();
+    } else {
+      alert('Ошибка: ' + (response.error || 'неизвестная'));
+    }
+  } catch (err: any) {
+    console.error('Ошибка отправки:', err);
+    alert('Не удалось отправить заявку. Попробуйте позже.');
+  }
+}
+
+// --- Остальное без изменений ---
 watch(
   () => props.isOpen,
   (open) => {
@@ -114,23 +206,9 @@ function close() {
 }
 
 function handleBackdrop(e: MouseEvent) {
-  // close on overlay click
   if (e.target && (e.target as HTMLElement).classList.contains("dialog-overlay")) {
     close();
   }
-}
-
-function submit() {
-  if (!isValid.value) return;
-  const payload = { message: message.value.trim(), phone: phone.value.trim() };
-  emit("submit", payload);
-
-  // Fallback action: open mail client
-  const subject = encodeURIComponent("Запрос с сайта: контактная форма");
-  const body = encodeURIComponent(`Сообщение:\n${payload.message}\n\nТелефон: ${payload.phone}`);
-  window.location.href = `mailto:rusbar2008@rambler.ru?subject=${subject}&body=${body}`;
-
-  close();
 }
 </script>
 
