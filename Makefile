@@ -10,12 +10,12 @@ REGISTRY_IMAGE ?= vesi
 PROJECT_NAME ?= vesi-kazan
 VERSION ?= latest
 VITE_S3_URL ?= 
-VITE_TELEGRAM_BOT_TOKEN ?= 
-VITE_TELEGRAM_CHAT_ID ?= 
+TELEGRAM_BOT_TOKEN ?= 
+TELEGRAM_CHAT_ID ?= 
 
 # Сборка Docker-образа
 build:
-	docker build --build-arg VITE_S3_URL=$(VITE_S3_URL) -t $(REGISTRY_IMAGE):$(VERSION) .
+	docker build --build-arg VITE_S3_URL=$(VITE_S3_URL) TELEGRAM_BOT_TOKEN=$(TELEGRAM_BOT_TOKEN) TELEGRAM_CHAT_ID=$(TELEGRAM_CHAT_ID)  -t $(REGISTRY_IMAGE):$(VERSION) .
 
 # Загрузка образа в реестр
 push:
