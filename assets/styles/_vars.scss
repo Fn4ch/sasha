@@ -29,3 +29,8 @@ $colorGrey: rgba(0, 0, 0, 0.12); // Material Design divider
 $borderRadius: 4px;
 $borderRadiusLarge: 8px;
 $borderRadiusSmall: 2px;
+
+// Viewport variables for mobile devices
+$viewportHeight: 100vh;
+$viewportHeightFallback: calc(var(--vh, 1vh) * 100);
+$viewportHeightIos: -webkit-fill-available;

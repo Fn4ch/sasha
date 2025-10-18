@@ -15,7 +15,12 @@ export default defineEventHandler(async (event) => {
 
   if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
     console.error('❌ TELEGRAM_TOKEN или TELEGRAM_CHAT_ID не заданы')
-    return { error: 'Ошибка сервера' }
+    console.error('TELEGRAM_TOKEN:', TELEGRAM_TOKEN ? 'установлен' : 'НЕ УСТАНОВЛЕН')
+    console.error('TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID ? 'установлен' : 'НЕ УСТАНОВЛЕН')
+    return { 
+      error: 'Сервис временно недоступен. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.',
+      details: 'Отсутствуют настройки уведомлений'
+    }
   }
 
   const message = `
@@ -36,13 +41,24 @@ export default defineEventHandler(async (event) => {
 
     if (!res.ok) {
       const err = await res.json()
-      console.error('Telegram error:', err)
-      return { error: 'Не удалось отправить в Telegram' }
+      console.error('Telegram API error:', err)
+      console.error('Response status:', res.status)
+      console.error('Response headers:', Object.fromEntries(res.headers.entries()))
+      
+      return { 
+        error: 'Не удалось отправить уведомление. Пожалуйста, попробуйте позже.',
+        details: `Telegram API error: ${err.description || 'Unknown error'}`
+      }
     }
 
-    return { success: true }
+    const result = await res.json()
+    console.log('✅ Сообщение успешно отправлено в Telegram:', result.message_id)
+    return { success: true, messageId: result.message_id }
   } catch (error) {
-    console.error('Ошибка:', error)
-    return { error: 'Внутренняя ошибка' }
+    console.error('❌ Ошибка при отправке в Telegram:', error)
+    return { 
+      error: 'Ошибка сети. Пожалуйста, проверьте подключение и попробуйте снова.',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }
   }
 })

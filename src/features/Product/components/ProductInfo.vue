@@ -64,7 +64,7 @@
                 </div>
             </div>
         </section>
-        <ContactModal v-model:isOpen="isContactOpen" @submit="onContactSubmit" />
+        <ContactModal v-model:isOpen="isContactOpen" />
     </header>
 </template>
 
@@ -85,11 +85,6 @@ const scrollToCatalog = () => {
 
 const isContactOpen = ref(false)
 const openContactModal = () => { isContactOpen.value = true }
-const onContactSubmit = (payload: { message: string; phone: string }) => {
-  // noop here; submit is handled inside modal via mailto fallback
-  // you can hook analytics or API call here later
-  console.log('Contact request:', payload)
-}
 
 </script>
 
@@ -105,6 +100,12 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
     overflow: hidden;
     margin-top: 96px;
     padding: 1.5rem 0;
+    
+    /* WebKit оптимизации */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     
     @media (max-width: 1440px) {
         height: 90vh;
@@ -132,6 +133,40 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
         margin-top: 60px;
         padding: 0 0.2rem;
     }
+    
+    /* Специальные стили для iPhone и iOS */
+    @supports (-webkit-touch-callout: none) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+    }
+    
+    /* Дополнительные стили для iPhone в портретной ориентации */
+    @media screen and (max-width: 480px) and (orientation: portrait) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+        margin-top: 0;
+        padding-top: env(safe-area-inset-top, 0px);
+    }
+    
+    /* Стили для iPhone в альбомной ориентации */
+    @media screen and (max-width: 896px) and (orientation: landscape) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+        margin-top: 0;
+        padding-top: env(safe-area-inset-top, 0px);
+    }
 }
 
 .hero-background {
@@ -141,6 +176,13 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
     width: 100%;
     height: calc(100vh);
     z-index: 0;
+    overflow: hidden;
+    
+    /* WebKit оптимизации */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     
     @media (max-width: 1440px) {
         height: calc(100% - 85px);
@@ -159,11 +201,41 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
     }
     
     @media (max-width: 375px) {
-        height: calc(100% - 65px);
+        height: calc(100% - 40px);
     }
     
     @media (max-width: 320px) {
         height: calc(100% - 60px);
+    }
+    
+    /* Специальные стили для iPhone и iOS */
+    @supports (-webkit-touch-callout: none) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+    }
+    
+    /* Дополнительные стили для iPhone в портретной ориентации */
+    @media screen and (max-width: 480px) and (orientation: portrait) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+    }
+    
+    /* Стили для iPhone в альбомной ориентации */
+    @media screen and (max-width: 896px) and (orientation: landscape) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
     }
 }
 
@@ -175,9 +247,25 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
     max-width: 100% !important;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     display: block;
     position: absolute;
     top: 0;
+    left: 0;
+    
+    /* WebKit и Safari специфичные стили */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    
+    /* Исправление для iOS Safari */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     
     @media (max-width: 1920px) {
         max-height: calc(100vh - 90px);
@@ -202,6 +290,47 @@ const onContactSubmit = (payload: { message: string; phone: string }) => {
     
     @media (max-width: 320px) {
         max-height: calc(70vh - 60px);
+    }
+    
+    /* Специальные стили для iPhone и iOS */
+    @supports (-webkit-touch-callout: none) {
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+        width: 100vw;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        object-fit: cover;
+        object-position: center center;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    /* Дополнительные стили для iPhone в портретной ориентации */
+    @media screen and (max-width: 480px) and (orientation: portrait) {
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        object-fit: cover;
+        object-position: center center;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    /* Стили для iPhone в альбомной ориентации */
+    @media screen and (max-width: 896px) and (orientation: landscape) {
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: -webkit-fill-available;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        height: -webkit-fill-available;
+        object-fit: cover;
+        object-position: center center;
     }
 }
 

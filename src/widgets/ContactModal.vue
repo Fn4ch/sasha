@@ -158,31 +158,71 @@ function onPhonePaste(e: ClipboardEvent) {
   phone.value = formatRuPhone(digits);
 }
 
+// Типы для ответа API
+interface ApiSuccessResponse {
+  success: true;
+  messageId?: number;
+}
+
+interface ApiErrorResponse {
+  error: string;
+  details?: string;
+}
+
+type ApiResponse = ApiSuccessResponse | ApiErrorResponse;
+
 // --- ОСНОВНОЕ ИЗМЕНЕНИЕ: handleSubmit через $fetch ---
 async function handleSubmit() {
   if (!isValid.value) return;
 
+  const submitButton = document.querySelector('.cta-button.primary') as HTMLButtonElement;
+  const originalText = submitButton?.innerHTML;
+  
+  // Показываем состояние загрузки
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span>Отправка...</span>';
+  }
+
   try {
     // Отправляем на твой Nuxt API-роут
-    const response = await $fetch('/api/submit', {
+    const response = await $fetch<ApiResponse>('/api/submit', {
       method: 'POST',
       body: {
-        name: '', // у тебя в API есть `name`, но в форме его нет — можно убрать или оставить пустым
         phone: normalizedPhone.value,
         text: message.value.trim()
       }
     });
 
-    if (response.success) {
+    if ('success' in response && response.success) {
       emit('submit', { message: message.value.trim(), phone: normalizedPhone.value });
-      alert('Спасибо! Мы скоро свяжемся с вами.');
+      alert('✅ Спасибо! Мы получили вашу заявку и скоро свяжемся с вами.');
       close();
     } else {
-      alert('Ошибка: ' + (response.error || 'неизвестная'));
+      const errorMessage = 'error' in response ? response.error : 'Неизвестная ошибка';
+      const details = 'details' in response && response.details ? `\n\nДетали: ${response.details}` : '';
+      alert(`❌ Ошибка: ${errorMessage}${details}`);
     }
   } catch (err: any) {
     console.error('Ошибка отправки:', err);
-    alert('Не удалось отправить заявку. Попробуйте позже.');
+    
+    let errorMessage = 'Не удалось отправить заявку. Попробуйте позже.';
+    
+    if (err.status === 500) {
+      errorMessage = 'Сервер временно недоступен. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.';
+    } else if (err.status === 400) {
+      errorMessage = 'Проверьте правильность заполнения формы.';
+    } else if (err.status === 0 || !navigator.onLine) {
+      errorMessage = 'Проверьте подключение к интернету и попробуйте снова.';
+    }
+    
+    alert(`❌ ${errorMessage}`);
+  } finally {
+    // Восстанавливаем кнопку
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText || '<span>Отправить</span><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>';
+    }
   }
 }
 
