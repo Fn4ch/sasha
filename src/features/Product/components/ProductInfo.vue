@@ -12,8 +12,8 @@
                 priority
                 fetchpriority="high"
             />
-            <div class="hero-overlay"></div>
-            <div class="hero-gradient"></div>
+            <div class="hero-overlay"/>
+            <div class="hero-gradient"/>
         </div>
         
         <section class="hero-content">
@@ -22,9 +22,9 @@
                     <span>С 2006 года</span>
                 </div>-->
                 
-                <h1 class="hero-title">
+                <!--<h1 class="hero-title">
                     <span class="title-line">Весы</span>
-                </h1>
+                </h1>-->
                 
                 <p class="hero-subtitle">
                     ООО «Весы» — надежный партнер в весовом оборудовании
@@ -52,7 +52,7 @@
                 </article>
                 
                 <div class="hero-cta">
-                    <button @click="scrollToCatalog" class="cta-button primary">
+                    <button class="cta-button primary" @click="scrollToCatalog">
                         <span>Смотреть каталог</span>
                         <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -64,8 +64,8 @@
                 </div>
             </div>
         </section>
-        <ContactModal v-model:isOpen="isContactOpen" />
     </header>
+    <ContactModal v-model:is-open="isContactOpen" />
 </template>
 
 <script setup lang="ts">
@@ -133,40 +133,6 @@ const openContactModal = () => { isContactOpen.value = true }
         margin-top: 60px;
         padding: 0 0.2rem;
     }
-    
-    /* Специальные стили для iPhone и iOS */
-    @supports (-webkit-touch-callout: none) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-    }
-    
-    /* Дополнительные стили для iPhone в портретной ориентации */
-    @media screen and (max-width: 480px) and (orientation: portrait) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-        margin-top: 0;
-        padding-top: env(safe-area-inset-top, 0px);
-    }
-    
-    /* Стили для iPhone в альбомной ориентации */
-    @media screen and (max-width: 896px) and (orientation: landscape) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-        margin-top: 0;
-        padding-top: env(safe-area-inset-top, 0px);
-    }
 }
 
 .hero-background {
@@ -206,36 +172,6 @@ const openContactModal = () => { isContactOpen.value = true }
     
     @media (max-width: 320px) {
         height: calc(100% - 60px);
-    }
-    
-    /* Специальные стили для iPhone и iOS */
-    @supports (-webkit-touch-callout: none) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-    }
-    
-    /* Дополнительные стили для iPhone в портретной ориентации */
-    @media screen and (max-width: 480px) and (orientation: portrait) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-    }
-    
-    /* Стили для iPhone в альбомной ориентации */
-    @media screen and (max-width: 896px) and (orientation: landscape) {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
     }
 }
 
@@ -290,47 +226,6 @@ const openContactModal = () => { isContactOpen.value = true }
     
     @media (max-width: 320px) {
         max-height: calc(70vh - 60px);
-    }
-    
-    /* Специальные стили для iPhone и iOS */
-    @supports (-webkit-touch-callout: none) {
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-        width: 100vw;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        object-fit: cover;
-        object-position: center center;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    
-    /* Дополнительные стили для iPhone в портретной ориентации */
-    @media screen and (max-width: 480px) and (orientation: portrait) {
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        object-fit: cover;
-        object-position: center center;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    
-    /* Стили для iPhone в альбомной ориентации */
-    @media screen and (max-width: 896px) and (orientation: landscape) {
-        min-height: 100vh;
-        min-height: calc(var(--vh, 1vh) * 100);
-        min-height: -webkit-fill-available;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        height: -webkit-fill-available;
-        object-fit: cover;
-        object-position: center center;
     }
 }
 

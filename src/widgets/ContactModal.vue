@@ -1,11 +1,12 @@
 <template>
+  <Teleport to="body">
   <Transition name="dialog-fade">
     <div v-if="isOpen" class="dialog-overlay" @click="handleBackdrop">
       <div class="dialog" role="dialog" aria-modal="true" @click.stop>
         <header class="dialog__header">
           <h3 class="dialog__title">Связаться с нами</h3>
           <button class="icon-button" aria-label="Закрыть" @click="close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" color="#cccccc" stroke-width="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
@@ -21,7 +22,7 @@
                 rows="5"
                 placeholder=" "
                 :aria-invalid="messageError ? 'true' : 'false'"
-              ></textarea>
+              />
               <label for="contact-message" class="md-field__label">Сообщение</label>
               <p v-if="messageError" class="md-field__error">
                 Введите сообщение (минимум 5 символов)
@@ -33,9 +34,6 @@
                 id="contact-phone"
                 name="phone"
                 :value="phone"
-                @input="onPhoneInput"
-                @focus="onPhoneFocus"
-                @paste.prevent="onPhonePaste"
                 class="md-field__input"
                 type="tel"
                 inputmode="tel"
@@ -43,12 +41,15 @@
                 placeholder="+7 (___) ___-__-__"
                 maxlength="19"
                 :aria-invalid="phoneError ? 'true' : 'false'"
-              />
+                @input="onPhoneInput"
+                @focus="onPhoneFocus"
+                @paste.prevent="onPhonePaste"
+              >
               <label for="contact-phone" class="md-field__label">Телефон для связи</label>
               <p v-if="phoneError" class="md-field__error">Укажите корректный номер телефона</p>
             </div>
             <!-- Hidden normalized E.164 phone for backend convenience -->
-            <input type="hidden" name="phone_e164" :value="normalizedPhone" />
+            <input type="hidden" name="phone_e164" :value="normalizedPhone" >
           </section>
 
           <footer class="dialog__footer">
@@ -70,6 +71,7 @@
       </div>
     </div>
   </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -288,19 +290,19 @@ function handleBackdrop(e: MouseEvent) {
 }
 
 .icon-button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
   background: transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #333;
   transition: background 0.2s ease-in-out;
+  box-shadow: none;
+  border-radius: 12px;
+  padding: 8px 8px;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   &:hover {
