@@ -97,21 +97,25 @@ const openContactModal = () => { isContactOpen.value = true }
     justify-content: center;
     width: 100%;
     height: calc(100vh - var(--header-height));
+    height: calc(100svh - var(--header-height));
     overflow: hidden;
     margin-top: var(--header-height);
     padding: 1.5rem 0;
 
-    /* WebKit оптимизации */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-
-    @media (max-width: 1440px) { height: 90vh; }
-    @media (max-width: 1024px) { height: 85vh; }
-    @media (max-width: 480px)  { height: 80vh; }
-    @media (max-width: 375px)  { height: 75vh; padding: 0 0.3rem; }
-    @media (max-width: 320px)  { height: 70vh; padding: 0 0.2rem; }
+    @media (max-width: 1440px) {
+        height: 90vh;
+        height: 90svh;
+    }
+    @media (max-width: 1024px) {
+        height: 85vh;
+        height: 85svh;
+    }
+    @media (max-width: 480px) {
+        height: 80vh;
+        height: 80svh;
+    }
+    @media (max-width: 375px)  { height: 75svh; padding: 0 0.3rem; }
+    @media (max-width: 320px)  { height: 70svh; padding: 0 0.2rem; }
 }
 
 .hero-background {
@@ -122,12 +126,6 @@ const openContactModal = () => { isContactOpen.value = true }
     height: 100%;
     z-index: 0;
     overflow: hidden;
-
-    /* WebKit оптимизации */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
 }
 
 .hero-image {

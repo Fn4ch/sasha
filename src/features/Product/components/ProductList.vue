@@ -184,7 +184,7 @@ const PRODUCTS_DATA: IVesi[] = vesi
 
 .products-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding: 2rem;
     max-width: 1400px;
@@ -193,40 +193,39 @@ const PRODUCTS_DATA: IVesi[] = vesi
     align-items: start;
     justify-items: center;
     margin: 0 auto;
-    
+
+    @media (min-width: 1921px) {
+        max-width: 1800px;
+        gap: 2.5rem;
+        padding: 2.5rem;
+    }
+
     @media (max-width: 1440px) {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
         padding: 1.5rem;
         max-width: 1200px;
     }
-    
+
     @media (max-width: 1024px) {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         padding: 1rem;
         gap: 1.2rem;
         max-width: 1000px;
     }
-    
-    @media (max-width: 819px) {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
         padding: 0.8rem;
         gap: 1rem;
-        max-width: 800px;
+        max-width: 100%;
     }
-    
-    @media (max-width: 768px) {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        max-width: 600px;
-    }
-    
+
     @media (max-width: 480px) {
         grid-template-columns: 1fr;
         padding: 0.5rem;
         gap: 0.8rem;
-        max-width: 100%;
     }
-    
+
     @media (max-width: 375px) {
         padding: 0.3rem;
         gap: 0.6rem;

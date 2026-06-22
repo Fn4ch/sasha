@@ -7,7 +7,7 @@
                     loading="lazy"
                     format="webp"
                     quality="75"
-                    sizes="(max-width: 320px) 12rem, (max-width: 375px) 14rem, (max-width: 480px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, 23rem"
+                    sizes="(max-width: 320px) 12rem, (max-width: 375px) 14rem, (max-width: 480px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, (min-width: 1921px) 36rem, 23rem"
                     placeholder
                     fetchpriority="low"
                 />
@@ -96,8 +96,7 @@ const getImageUrl = (images: string[]) => {
     
     @media (min-width: 1921px) {
         border-radius: 1.6vw;
-        margin-top: 2.4vw;
-        height: 34vw;
+        height: clamp(38rem, 34vw, 52rem);
         max-width: 25vw;
     }
     
@@ -307,7 +306,7 @@ const getImageUrl = (images: string[]) => {
         @media (min-width: 1921px) {
             border-radius: 1.6vw 1.6vw 0 0;
             height: 65%;
-            min-height: 20vw;
+            min-height: clamp(20rem, 20vw, 34rem);
         }
         
         @media (max-width: 1440px) {
@@ -338,7 +337,7 @@ const getImageUrl = (images: string[]) => {
         }
     }
     
-    .product-card__image-wrapper .nuxt-img {
+    .product-card__image-wrapper img {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover;
@@ -353,13 +352,13 @@ const getImageUrl = (images: string[]) => {
         bottom: 0;
         min-width: 100%;
         min-height: 100%;
-        
+
         @media (min-width: 1921px) {
             border-radius: 1.6vw 1.6vw 0 0;
         }
     }
-    
-    .product-card:hover .product-card__image-wrapper .nuxt-img {
+
+    .product-card:hover .product-card__image-wrapper img {
         transform: scale(1.05);
     }
 }

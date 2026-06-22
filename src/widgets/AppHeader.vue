@@ -80,6 +80,7 @@ onMounted(() => {
     top: 0;
     left: 0;
     right: 0;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     background: linear-gradient(
         135deg,
