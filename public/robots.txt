@@ -7,14 +7,10 @@ Sitemap: https://vesi-kazan.ru/sitemap.xml
 # Crawl-delay for better server performance
 Crawl-delay: 1
 
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
+# Disallow technical paths
 Disallow: /api/
 Disallow: /_nuxt/
 Disallow: /_ipx/
 
-# Allow important pages
+# Allow product pages
 Allow: /product/
-Allow: /catalog/
-Allow: /contacts/

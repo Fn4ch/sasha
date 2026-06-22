@@ -60,6 +60,7 @@
         <div class="dev__info">
           <p class="dev__copyright">&copy; {{ currentYear }} Весы Казань</p>
           <p class="dev__rights">Все права защищены</p>
+          <NuxtLink to="/privacy-policy" class="privacy-link">Политика конфиденциальности</NuxtLink>
         </div>
         <div class="dev__site">
           <a href="https://faotech.dev/ru" target="_blank" class="dev-link">
@@ -417,11 +418,31 @@ const currentYear = new Date().getFullYear()
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.6);
       margin: 0;
-      
+
       @media (min-width: 1921px) {
         font-size: 0.72vw;
       }
-      
+
+      @media (max-width: 768px) {
+        font-size: 0.8rem;
+      }
+    }
+
+    .privacy-link {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      @media (min-width: 1921px) {
+        font-size: 0.68vw;
+      }
+
       @media (max-width: 768px) {
         font-size: 0.8rem;
       }

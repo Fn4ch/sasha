@@ -16,6 +16,16 @@ import AppFooter from '~/src/widgets/AppFooter.vue'
 <style lang="scss">
 @use "@/assets/styles/_vars.scss" as vars;
 
+:root {
+  --header-height: 96px;
+
+  @media (max-width: 1440px) { --header-height: 85px; }
+  @media (max-width: 1024px) { --header-height: 80px; }
+  @media (max-width: 480px)  { --header-height: 70px; }
+  @media (max-width: 375px)  { --header-height: 65px; }
+  @media (max-width: 320px)  { --header-height: 60px; }
+}
+
 // Material Design CSS Reset and Base Styles
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -48,13 +58,13 @@ footer, header, hgroup, menu, nav, section {
 html {
   overflow-x: hidden;
   // Material Design typography
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif;
 }
 
 body {
   line-height: 1.6;
   font-size: 1rem;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif;
   background-color: #fafafa; // Material Design background
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

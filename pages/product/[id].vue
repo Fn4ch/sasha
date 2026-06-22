@@ -211,11 +211,23 @@ const fullscreenImages = computed(() => {
   return product.value.images.map(image => getImageFromS3(image))
 })
 
-// SEO meta based on product data
 const url = useRequestURL()
 const canonical = computed(() => new URL(`/product/${productId.value}`, url.origin).toString())
-const seoTitle = computed(() => product.value?.title ? `${product.value.title} | Весы Казань` : 'Товар | Весы Казань')
-const seoDescription = computed(() => product.value?.shortDescription || product.value?.description || 'Профессиональные весы: продажа, монтаж, сервис.')
+const seoTitle = computed(() => {
+  if (!product.value) return 'Товар | Весы Казань'
+  return product.value.seoTitle
+    ? `${product.value.seoTitle} | Весы Казань`
+    : `${product.value.title} | Весы Казань`
+})
+const seoDescription = computed(() =>
+  product.value?.seoDescription
+  || product.value?.shortDescription
+  || product.value?.description
+  || 'Профессиональные весы: продажа, монтаж, сервис в Казани. ООО «Весы».'
+)
+const seoKeywords = computed(() =>
+  product.value?.seoKeywords || 'весовое оборудование Казань, купить весы, ООО Весы'
+)
 const seoImage = computed(() => {
   const first = product.value?.images?.[0]
   return first ? getImageFromS3(first) : '/images/logo.webp'
@@ -227,8 +239,14 @@ useSeoMeta({
   description: () => seoDescription.value,
   ogDescription: () => seoDescription.value,
   ogImage: () => seoImage.value,
+  ogUrl: () => canonical.value,
+  ogType: 'product',
+  keywords: () => seoKeywords.value,
   twitterCard: 'summary_large_image',
-  ogType: 'website'
+  twitterTitle: () => seoTitle.value,
+  twitterDescription: () => seoDescription.value,
+  twitterImage: () => seoImage.value,
+  robots: () => product.value ? 'index, follow' : 'noindex, nofollow',
 })
 
 useHead(() => {
@@ -242,8 +260,24 @@ useHead(() => {
     url: canonical.value,
     brand: {
       '@type': 'Brand',
-      name: 'Весы Казань'
-    }
+      name: 'Весы Казань',
+    },
+    seller: {
+      '@type': 'LocalBusiness',
+      name: 'ООО «Весы»',
+      url: 'https://vesi-kazan.ru',
+      telephone: '+79600310185',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: canonical.value,
+      priceCurrency: 'RUB',
+      availability: 'https://schema.org/InStock',
+      seller: {
+        '@type': 'LocalBusiness',
+        name: 'ООО «Весы»',
+      },
+    },
   } : null
 
   return {
@@ -310,14 +344,14 @@ watch(() => product.value, () => {
 .product-page {
   width: 100%;
   max-width: 1400px;
-  margin: 96px auto 0 auto;
+  margin: var(--header-height) auto 0 auto;
   padding: 3rem 1rem;
-  min-height: calc(100vh - 124px);
-  
+  min-height: calc(100vh - var(--header-height));
+
   @media (max-width: 768px) {
     padding: 1.5rem 1rem;
   }
-  
+
   @media (min-width: 1921px) {
     max-width: 112vw;
     padding: 1.6vw;

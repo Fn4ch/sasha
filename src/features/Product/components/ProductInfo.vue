@@ -96,43 +96,22 @@ const openContactModal = () => { isContactOpen.value = true }
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 96px); 
+    height: calc(100vh - var(--header-height));
     overflow: hidden;
-    margin-top: 96px;
+    margin-top: var(--header-height);
     padding: 1.5rem 0;
-    
+
     /* WebKit оптимизации */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    
-    @media (max-width: 1440px) {
-        height: 90vh;
-        margin-top: 85px;
-    }
-    
-    @media (max-width: 1024px) {
-        height: 85vh;
-        margin-top: 80px;
-    }
-    
-    @media (max-width: 480px) {
-        height: 80vh;
-        margin-top: 70px;
-    }
-    
-    @media (max-width: 375px) {
-        height: 75vh;
-        margin-top: 65px;
-        padding: 0 0.3rem;
-    }
-    
-    @media (max-width: 320px) {
-        height: 70vh;
-        margin-top: 60px;
-        padding: 0 0.2rem;
-    }
+
+    @media (max-width: 1440px) { height: 90vh; }
+    @media (max-width: 1024px) { height: 85vh; }
+    @media (max-width: 480px)  { height: 80vh; }
+    @media (max-width: 375px)  { height: 75vh; padding: 0 0.3rem; }
+    @media (max-width: 320px)  { height: 70vh; padding: 0 0.2rem; }
 }
 
 .hero-background {
@@ -140,39 +119,15 @@ const openContactModal = () => { isContactOpen.value = true }
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh);
+    height: 100%;
     z-index: 0;
     overflow: hidden;
-    
+
     /* WebKit оптимизации */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    
-    @media (max-width: 1440px) {
-        height: calc(100% - 85px);
-    }
-    
-    @media (max-width: 1024px) {
-        height: calc(100% - 80px);
-    }
-    
-    @media (max-width: 768px) {
-        height: calc(100% - 84px);
-    }
-    
-    @media (max-width: 480px) {
-        height: calc(100% - 70px);
-    }
-    
-    @media (max-width: 375px) {
-        height: calc(100% - 40px);
-    }
-    
-    @media (max-width: 320px) {
-        height: calc(100% - 60px);
-    }
 }
 
 .hero-image {

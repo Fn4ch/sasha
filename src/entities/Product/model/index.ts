@@ -4,5 +4,8 @@ export type IVesi = {
     title: string;
     description: string;
     shortDescription: string;
-    additionalInfo?: string
+    additionalInfo?: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    seoKeywords?: string;
 }

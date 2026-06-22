@@ -50,6 +50,15 @@
             </div>
             <!-- Hidden normalized E.164 phone for backend convenience -->
             <input type="hidden" name="phone_e164" :value="normalizedPhone" >
+
+            <div class="consent-field">
+              <label class="consent-label">
+                <input type="checkbox" v-model="consentGiven" class="consent-checkbox" />
+                <span>Я согласен(на) на
+                  <NuxtLink to="/privacy-policy" target="_blank" class="consent-link">обработку персональных данных</NuxtLink>
+                </span>
+              </label>
+            </div>
           </section>
 
           <footer class="dialog__footer">
@@ -92,6 +101,7 @@ const emit = defineEmits<Emits>();
 
 const message = ref("");
 const phone = ref("");
+const consentGiven = ref(false);
 
 // --- Валидация и форматирование (остаётся без изменений) ---
 function normalizeDigits(value: string): string {
@@ -133,7 +143,7 @@ const isValid = computed(() => {
   const msgOk = message.value.trim().length >= 5;
   const digits = normalizeDigits(phone.value);
   const coerced = digits[0] === '8' ? '7' + digits.slice(1) : (digits[0] === '7' ? digits : '7' + digits);
-  return msgOk && coerced.length === 11;
+  return msgOk && coerced.length === 11 && consentGiven.value;
 });
 
 const normalizedPhone = computed(() => {
@@ -238,6 +248,7 @@ watch(
       document.body.style.overflow = "";
       message.value = "";
       phone.value = "";
+      consentGiven.value = false;
     }
   },
 );
@@ -408,5 +419,39 @@ function handleBackdrop(e: MouseEvent) {
 .dialog-fade-enter-from,
 .dialog-fade-leave-to {
   opacity: 0;
+}
+
+.consent-field {
+  margin-bottom: 0.5rem;
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.4;
+  pointer-events: auto;
+}
+
+.consent-checkbox {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  accent-color: #ff9800;
+  cursor: pointer;
+  margin-top: 1px;
+}
+
+.consent-link {
+  color: #f57c00;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #e65100;
+  }
 }
 </style>
