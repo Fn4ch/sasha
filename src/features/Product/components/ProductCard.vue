@@ -7,7 +7,7 @@
                     loading="lazy"
                     format="webp"
                     quality="75"
-                    sizes="(max-width: 320px) 12rem, (max-width: 375px) 14rem, (max-width: 480px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, (min-width: 1921px) 36rem, 23rem"
+                    sizes="xs:192px sm:256px md:288px lg:320px xl:368px 2xl:576px"
                     placeholder
                     fetchpriority="low"
                 />

@@ -6,21 +6,21 @@
         <section class="products-list">
             <ProductCard 
                 v-for="p in PRODUCTS_DATA" 
-                :key="p.title"
                 :id="p.id"
+                :key="p.title"
                 :images="p.images" 
                 :title="p.title" 
-                :shortDescription="p.shortDescription" 
+                :short-description="p.shortDescription" 
             />
         </section>
     </article>
 </template>
 <script setup lang="ts">
 import type { IVesi } from '~/src/entities/Product/model';
-import vesi from  '~/src/shared/constants/vesi.json'
+import products from  '~/src/shared/constants/products.json'
 import ProductCard from './ProductCard.vue';
 
-const PRODUCTS_DATA: IVesi[] = vesi
+const PRODUCTS_DATA: IVesi[] = products
 </script>
 <style lang="scss" scoped>
 .products{

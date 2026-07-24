@@ -1,0 +1,171 @@
+[
+  {
+    "id": "px3",
+    "images": [
+      "PX3.1.png",
+      "PX3.2.png",
+      "PX3.3.png",
+      "PX3.4.png",
+      "PX3.5.png",
+      "PX3.6.png",
+      "PX3.7.png",
+      "PX3.8.png",
+      "PX3.9.png"
+    ],
+    "title": "Модульный дом PX3",
+    "description": "Размеры Д5600хШ3300хВ3300 Площадь 18м2",
+    "shortDescription": "Размеры Д5600хШ3300хВ3300 Площадь 18м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "px5",
+    "images": [
+      "PX5.1.png",
+      "PX5.2.png",
+      "PX5.3.png",
+      "PX5.4.png",
+      "PX5.5.png"
+    ],
+    "title": "Модульный дом PX5",
+    "description": "Размеры: Д8500хШ3300хВ3300 Площадь: 28м2",
+    "shortDescription": "Размеры: Д8500хШ3300хВ3300 Площадь: 28м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "px7",
+    "images": [
+      "PX7.1.png",
+      "PX7.2.png",
+      "PX7.3.png",
+      "PX7.4.png",
+      "PX7.5.png",
+      "PX7.6.png",
+      "PX7.7.png",
+      "PX7.8.png",
+      "PX7.9.png"
+    ],
+    "title": "Модульный дом PX7",
+    "description": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
+    "shortDescription": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "q5",
+    "images": [
+      "Q5.1.png",
+      "Q5.2.png",
+      "Q5.3.png",
+      "Q5.4.png"
+    ],
+    "title": "Модульный дом Q5",
+    "description": "Размеры Д6000хШ3300хВ3300 Площадь 16м2",
+    "shortDescription": "Размеры Д6000хШ3300хВ3300 Площадь 16м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "o5",
+    "images": [
+      "O5.1.png",
+      "O5.2.png",
+      "O5.3.png",
+      "O5.4.png",
+      "O5.5.png",
+      "O5.6.png",
+      "O5.7.png",
+      "O5.8.png"
+    ],
+    "title": "Модульный дом O5",
+    "description": "Размеры Д11500хШ3300хВ3300 Площадь 38м2",
+    "shortDescription": "Размеры Д11500хШ3300хВ3300 Площадь 38м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "v3",
+    "images": [
+      "V3.1.png",
+      "V3.2.png",
+      "V3.3.png",
+      "V3.4.png"
+    ],
+    "title": "Модульный дом V3",
+    "description": "Размеры: Д6400хШ3300хВ3300 Площадь: 22м2",
+    "shortDescription": "Размеры: Д6400хШ3300хВ3300 Площадь: 22м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "v6",
+    "images": [
+      "V6.1.png",
+      "V6.2.png",
+      "V6.3.png",
+      "V6.4.png",
+      "V6.5.png",
+      "V6.6.png"
+    ],
+    "title": "Модульный дом V6",
+    "description": "Размеры Д8500хШ3300хВ3300 Площадь 28м2",
+    "shortDescription": "Размеры Д8500хШ3300хВ3300 Площадь 28м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "v9",
+    "images": [
+      "V9.1.png",
+      "V9.2.png",
+      "V9.3.png",
+      "V9.4.png",
+      "V9.5.png",
+      "V9.6.png",
+      "V9.7.png",
+      "V9.8.png"
+    ],
+    "title": "Модульный дом V9",
+    "description": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
+    "shortDescription": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  },
+  {
+    "id": "aircraft-capsule",
+    "images": [
+      "AirCraft.1.PNG",
+      "AirCraft.2.PNG",
+      "AirCraft.3.PNG",
+      "AirCraft.4.PNG",
+      "AirCraft.5.PNG",
+      "AirCraft.6.PNG",
+      "AirCraft.7.PNG",
+      "AirCraft.8.PNG"
+    ],
+    "title": "Модульный дом Aircraft Capsule",
+    "description": "Размеры Д9600хШ3300хВ3300 Площадь 32м2",
+    "shortDescription": "Размеры Д9600хШ3300хВ3300 Площадь 32м2",
+    "additionalInfo": "Дополнительная информация или расширеное описание",
+    "seoTitle": "SEO заголовок",
+    "seoDescription": "SEO описание",
+    "seoKeywords": "SEO ключевые слова"
+  }
+]
