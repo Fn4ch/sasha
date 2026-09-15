@@ -11,8 +11,8 @@ endif
 
 # Переменные с значениями по умолчанию
 APP_PORT ?= 80
-REGISTRY_IMAGE ?= vesi
-PROJECT_NAME ?= vesi-kazan
+REGISTRY_IMAGE ?= kao
+PROJECT_NAME ?= kao-module
 VERSION ?= latest
 VITE_S3_URL ?= 
 TELEGRAM_BOT_TOKEN ?= 
