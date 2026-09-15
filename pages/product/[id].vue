@@ -4,43 +4,50 @@
       <div class="product-container">
         <!-- Left side - Image gallery -->
         <div class="product-gallery">
-          <div class="main-image-container" @click="openFullscreen">
-            <NuxtImg
-              :src="getImageFromS3(product.images[currentIndex])"
-              fit="cover"
-              width="600"
-              height="500"
-              :alt="`${product.title} - основное изображение`"
-              class="main-image"
-              loading="eager"
-              format="webp"
-              quality="85"
-              priority
-              fetchpriority="high"
-            />
-            <div class="image-overlay">
-              <div class="zoom-indicator">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="m21 21-4.35-4.35"/>
-                  <path d="M11 8v6"/>
-                  <path d="M8 11h6"/>
-                </svg>
-                <span>Нажмите для увеличения</span>
+          <div ref="mainTrackRef" class="main-image-track" @scroll="handleMainScroll">
+            <div
+              v-for="(image, index) in product.images"
+              :key="index"
+              class="main-image-slide"
+              @click="openFullscreen(index)"
+            >
+              <NuxtImg
+                :src="getImageFromS3(image)"
+                fit="cover"
+                width="600"
+                height="500"
+                :alt="`${product.title} - изображение ${index + 1}`"
+                class="main-image"
+                :loading="index === 0 ? 'eager' : 'lazy'"
+                format="webp"
+                quality="85"
+                :priority="index === 0"
+                :fetchpriority="index === 0 ? 'high' : 'low'"
+              />
+              <div class="image-overlay">
+                <div class="zoom-indicator">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                    <path d="M11 8v6"/>
+                    <path d="M8 11h6"/>
+                  </svg>
+                  <span>Нажмите для увеличения</span>
+                </div>
               </div>
             </div>
           </div>
-          
+
           <!-- Thumbnail navigation -->
           <div class="thumbnail-container">
-            <button 
-              class="thumbnail-arrow left" 
+            <button
+              class="thumbnail-arrow left"
               :disabled="canScrollLeft"
-              @click="scrollThumbnails('left')"
+              @click="prevImage"
             >
               <ArrowLeft />
             </button>
-            
+
             <div class="thumbnails-wrapper">
               <div ref="thumbnailsRef" class="thumbnails">
                 <div
@@ -48,7 +55,7 @@
                   :key="index"
                   class="thumbnail"
                   :class="{ active: index === currentIndex }"
-                  @click="currentIndex = index"
+                  @click="selectImage(index)"
                 >
                   <NuxtImg
                     :src="getImageFromS3(image)"
@@ -72,10 +79,10 @@
               </div>
             </div>
             
-            <button 
-              class="thumbnail-arrow right" 
+            <button
+              class="thumbnail-arrow right"
               :disabled="canScrollRight"
-              @click="scrollThumbnails('right')"
+              @click="nextImage"
             >
               <ArrowRight />
             </button>
@@ -177,7 +184,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProduct } from '~/src/features/Product/lib'
 import { FullscreenView } from '~/src/shared/ui'
@@ -191,19 +198,16 @@ const route = useRoute()
 const productId = computed(() => route.params.id as string)
 const product = useProduct(productId.value)
 const currentIndex = ref(0)
+const mainTrackRef = ref<HTMLElement>()
 const thumbnailsRef = ref<HTMLElement>()
 const isFullscreenOpen = ref(false)
 const isContactOpen = ref(false)
 
-const canScrollLeft = computed(() => {
-  if (!thumbnailsRef.value) return true
-  return thumbnailsRef.value.scrollLeft <= 0
-})
+const canScrollLeft = computed(() => currentIndex.value <= 0)
 
 const canScrollRight = computed(() => {
-  if (!thumbnailsRef.value) return true
-  const { scrollLeft, scrollWidth, clientWidth } = thumbnailsRef.value
-  return scrollLeft >= scrollWidth - clientWidth - 10
+  if (!product.value?.images?.length) return true
+  return currentIndex.value >= product.value.images.length - 1
 })
 
 const fullscreenImages = computed(() => {
@@ -293,26 +297,47 @@ useHead(() => {
   }
 })
 
-function scrollThumbnails(direction: 'left' | 'right') {
-  if (!thumbnailsRef.value) return
-  
-  const scrollAmount = 200
-  const currentScroll = thumbnailsRef.value.scrollLeft
-  
-  if (direction === 'left') {
-    thumbnailsRef.value.scrollTo({
-      left: currentScroll - scrollAmount,
-      behavior: 'smooth'
-    })
-  } else {
-    thumbnailsRef.value.scrollTo({
-      left: currentScroll + scrollAmount,
+function selectImage(index: number) {
+  currentIndex.value = index
+  if (mainTrackRef.value) {
+    mainTrackRef.value.scrollTo({
+      left: index * mainTrackRef.value.clientWidth,
       behavior: 'smooth'
     })
   }
+  thumbnailsRef.value
+    ?.querySelectorAll('.thumbnail')[index]
+    ?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
 }
 
-function openFullscreen() {
+function prevImage() {
+  if (currentIndex.value > 0) {
+    selectImage(currentIndex.value - 1)
+  }
+}
+
+function nextImage() {
+  if (product.value?.images && currentIndex.value < product.value.images.length - 1) {
+    selectImage(currentIndex.value + 1)
+  }
+}
+
+function handleMainScroll() {
+  const track = mainTrackRef.value
+  if (!track || !product.value?.images?.length) return
+
+  const slideWidth = track.clientWidth
+  if (!slideWidth) return
+
+  const index = Math.round(track.scrollLeft / slideWidth)
+  const clampedIndex = Math.min(Math.max(index, 0), product.value.images.length - 1)
+  if (clampedIndex !== currentIndex.value) {
+    currentIndex.value = clampedIndex
+  }
+}
+
+function openFullscreen(index: number) {
+  currentIndex.value = index
   isFullscreenOpen.value = true
 }
 
@@ -334,9 +359,12 @@ function scrollToContacts() {
   }
 }
 
-// Reset current index when product changes
+// Reset current index and scroll position when product changes
 watch(() => product.value, () => {
   currentIndex.value = 0
+  nextTick(() => {
+    mainTrackRef.value?.scrollTo({ left: 0 })
+  })
 })
 </script>
 
@@ -388,24 +416,39 @@ watch(() => product.value, () => {
   }
 }
 
-.main-image-container {
+.main-image-track {
+  display: flex;
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  position: relative;
-  cursor: pointer;
-  
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @media (max-width: 768px) {
     aspect-ratio: 3/2;
     border-radius: 16px;
   }
-  
+
   @media (min-width: 1921px) {
     border-radius: 1.6vw;
   }
+}
+
+.main-image-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .main-image {
@@ -413,8 +456,8 @@ watch(() => product.value, () => {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  &:hover {
+
+  .main-image-slide:hover & {
     transform: scale(1.05);
   }
 }
@@ -435,18 +478,9 @@ watch(() => product.value, () => {
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 20px;
-  
-  @media (max-width: 768px) {
-    border-radius: 16px;
-  }
-  
-  @media (min-width: 1921px) {
-    border-radius: 1.6vw;
-  }
 }
 
-.main-image-container:hover .image-overlay {
+.main-image-slide:hover .image-overlay {
   opacity: 1;
 }
 
