@@ -7,7 +7,7 @@ else
     $(warning ⚠️  Файл .env не найден. Создайте его с необходимыми переменными.)
 endif
 
-.PHONY: env-example env-show check-env build all up run down push pull clean logs restart status health
+.PHONY: env-example env-show check-env build all up run down push pull clean logs restart status health certbot-init certbot-bootstrap
 
 # Переменные с значениями по умолчанию
 APP_PORT ?= 80
@@ -128,13 +128,28 @@ env-show:
 
 certbot-init:
 	# Выпуск сертификата через webroot без остановки контейнера
+	# Требует, чтобы контейнер уже работал и отдавал /.well-known/acme-challenge/ на 80 порту.
+	# Для самого первого выпуска сертификата (когда контейнер ещё падает из-за отсутствия
+	# сертификата) используйте make certbot-bootstrap.
 	docker run --rm \
 		-v /home/user1/letsencrypt:/etc/letsencrypt \
 		-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
 		-v /home/user1/public:/public \
 		certbot/certbot certonly --webroot -w /public \
-		-d vesy16.ru -d www.vesy16.ru \
+		-d kaomodul.ru -d www.kaomodul.ru \
 		--email cfrios2002@yandex.ru --agree-tos --no-eff-email --force-renewal --non-interactive
+
+certbot-bootstrap: stop
+	# Первичный выпуск сертификата в standalone-режиме, когда nginx ещё не может
+	# стартовать (нет сертификата -> контейнер падает -> порт 80 не обслуживается).
+	# Останавливает контейнер, сам временно занимает порт 80, затем освобождает его.
+	docker run --rm -p 80:80 \
+		-v /home/user1/letsencrypt:/etc/letsencrypt \
+		-v /home/user1/letsencrypt-lib:/var/lib/letsencrypt \
+		certbot/certbot certonly --standalone \
+		-d kaomodul.ru -d www.kaomodul.ru \
+		--email cfrios2002@yandex.ru --agree-tos --no-eff-email --non-interactive
+	@echo "✅ Сертификат получен. Теперь запустите: make up"
 
 # Просмотр логов
 logs:
