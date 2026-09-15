@@ -2,8 +2,7 @@
     <header id="header" class="header">
         <nav class="navigation">
             <div class="navigation__logo" @click="$router.push('/')">
-                <img src="@/assets/logo.svg" alt="Логотип ООО Весы" class="logo" loading="eager" fetchpriority="high">
-                <span>ООО "Весы"</span>
+                <span>KAO модуль</span>
             </div>
             <div class="navigation__links">
                 <button class="nav-link" @click="scrollToCatalog">

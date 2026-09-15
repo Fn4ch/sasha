@@ -10,7 +10,7 @@
 import { ProductList, ProductInfo } from '~/src/features/Product'
 import Contacts from '~/src/widgets/Contacts.vue'
 
-const SITE_URL = 'https://vesi-kazan.ru'
+const SITE_URL = 'https://kaomodul.ru'
 const title = 'Весы Казань — Продажа и обслуживание весового оборудования с 2006 года'
 const description = 'ООО «Весы» — продажа, монтаж и сервис весового оборудования в Казани с 2006 года. 17 лет опыта, более 1000 установок. Автомобильные, вагонные, платформенные, крановые весы. Тел.: +7 (960) 031-01-85.'
 const image = `${SITE_URL}/images/mainpage.png`

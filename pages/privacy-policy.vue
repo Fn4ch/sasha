@@ -11,7 +11,7 @@
         <p>
           Настоящая Политика обработки персональных данных (далее — Политика) разработана в соответствии с требованиями
           Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных
-          данных пользователей сайта <strong>vesi-kazan.ru</strong>.
+          данных пользователей сайта <strong>kaomodul.ru</strong>.
         </p>
         <p>
           Оператором персональных данных является:
@@ -126,16 +126,16 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'Политика конфиденциальности — Весы Казань',
-  description: 'Политика обработки персональных данных ООО «Весы». Информация о сборе, хранении и защите данных пользователей сайта vesi-kazan.ru.',
+  description: 'Политика обработки персональных данных ООО «Весы». Информация о сборе, хранении и защите данных пользователей сайта kaomodul.ru.',
   robots: 'noindex, follow',
   ogTitle: 'Политика конфиденциальности — Весы Казань',
   ogDescription: 'Политика обработки персональных данных ООО «Весы».',
-  ogUrl: 'https://vesi-kazan.ru/privacy-policy',
+  ogUrl: 'https://kaomodul.ru/privacy-policy',
   ogType: 'website',
 })
 
 useHead({
-  link: [{ rel: 'canonical', href: 'https://vesi-kazan.ru/privacy-policy' }],
+  link: [{ rel: 'canonical', href: 'https://kaomodul.ru/privacy-policy' }],
 })
 </script>
 

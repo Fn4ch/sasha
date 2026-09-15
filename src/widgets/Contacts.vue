@@ -62,10 +62,13 @@
 </template>
 
 <script setup lang="ts">
-const number = '+79600310185'
-const number2 = '+79600310187'
-const mail = 'rusbar2008@rambler.ru'
-const address = 'г. Казань, ул. Маршала Чуйкова 15'
+const number = '++7 963 123 0396'
+const number2 = '+7 963 123 0396'
+const mail = 'cfrios2002@yandex.ru'
+const address = `422605, РОССИЯ, РЕСПУБЛИКА ТАТАРСТАН
+(ТАТАРСТАН), М.Р-Н ЛАИШЕВСКИЙ, Г.П. ГОРОД
+ЛАИШЕВО, Д СТАРАЯ ПРИСТАНЬ, УЛ СТРОИТЕЛЕЙ, Д.
+7А, КВ. 1`
 </script>
 
 <style lang="scss" scoped>

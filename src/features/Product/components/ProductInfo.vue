@@ -2,7 +2,7 @@
     <header class="hero-section">
         <div class="hero-background">
             <NuxtImg 
-                :src="getImageFromS3('mainpage')" 
+                :src="getImageFromS3('kaopage')" 
                 sizes="100vw"
                 class="hero-image"
                 alt="Весы Казань - профессиональное весовое оборудование"
@@ -18,38 +18,9 @@
         
         <section class="hero-content">
             <div class="hero-text">
-                <!--<div class="hero-badge">
-                    <span>С 2006 года</span>
-                </div>-->
-                
-                <!--<h1 class="hero-title">
-                    <span class="title-line">Весы</span>
-                </h1>-->
-                
                 <p class="hero-subtitle">
-                    ООО «Весы» — надежный партнер в весовом оборудовании
+                    КАО модуль
                 </p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">17+</span>
-                        <span class="stat-label">лет опыта</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">установок</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">поддержка</span>
-                    </div>
-                </div>
-                
-                <article class="hero-services">
-                    <p class="services-text">
-                        Предоставляем полный цикл услуг: продажа, монтаж, модернизация, сервисное и гарантийное обслуживание, подготовка к поверке — автомобильных, вагонных, платформенных, крановых и других весов.
-                    </p>
-                </article>
                 
                 <div class="hero-cta">
                     <button class="cta-button primary" @click="scrollToCatalog">

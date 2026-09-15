@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://vesi-kazan.ru/sitemap.xml
+Sitemap: https://kaomodul.ru/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1

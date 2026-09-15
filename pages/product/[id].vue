@@ -35,14 +35,14 @@
           <div class="thumbnail-container">
             <button 
               class="thumbnail-arrow left" 
-              @click="scrollThumbnails('left')"
               :disabled="canScrollLeft"
+              @click="scrollThumbnails('left')"
             >
               <ArrowLeft />
             </button>
             
             <div class="thumbnails-wrapper">
-              <div class="thumbnails" ref="thumbnailsRef">
+              <div ref="thumbnailsRef" class="thumbnails">
                 <div
                   v-for="(image, index) in product.images"
                   :key="index"
@@ -74,8 +74,8 @@
             
             <button 
               class="thumbnail-arrow right" 
-              @click="scrollThumbnails('right')"
               :disabled="canScrollRight"
+              @click="scrollThumbnails('right')"
             >
               <ArrowRight />
             </button>
@@ -126,8 +126,8 @@
                 </svg>
               </div>
               <div class="feature-content">
-                <h4>Быстрая доставка</h4>
-                <p>Доставка по всей России</p>
+                <h4>Доставка бананов</h4>
+                <p>Доставка по всей России и Казахстану</p>
               </div>
             </div>
           </div>
@@ -145,9 +145,9 @@
       </div>
       
       <FullscreenView
-        v-model:isOpen="isFullscreenOpen"
+        v-model:is-open="isFullscreenOpen"
         :images="fullscreenImages"
-        :initialIndex="currentIndex"
+        :initial-index="currentIndex"
         @close="closeFullscreen"
       />
     </template>
@@ -172,7 +172,7 @@
         </button>
       </div>
     </template>
-    <ContactModal v-model:isOpen="isContactOpen" />
+    <ContactModal v-model:is-open="isContactOpen" />
   </div>
 </template>
 
@@ -265,7 +265,7 @@ useHead(() => {
     seller: {
       '@type': 'LocalBusiness',
       name: 'ООО «Весы»',
-      url: 'https://vesi-kazan.ru',
+      url: 'https://kaomodul.ru',
       telephone: '+79600310185',
     },
     offers: {
