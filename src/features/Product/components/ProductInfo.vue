@@ -2,7 +2,7 @@
     <header class="hero-section">
         <div class="hero-background">
             <NuxtImg 
-                :src="getImageFromS3('mainpage')" 
+                :src="getImageFromS3('mainpage.webp')" 
                 sizes="100vw"
                 class="hero-image"
                 alt="КАО Модуль — модульные дома"
@@ -71,7 +71,7 @@ const openContactModal = () => { isContactOpen.value = true }
     height: calc(100svh - var(--header-height));
     overflow: hidden;
     margin-top: var(--header-height);
-    padding: 1.5rem 0;
+    padding: 0;
 
     @media (max-width: 1440px) {
         height: 90vh;

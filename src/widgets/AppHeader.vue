@@ -1,5 +1,5 @@
 <template>
-    <header id="header" class="header">
+    <header id="header" ref="headerElement" class="header">
         <nav class="navigation">
             <div class="navigation__logo" @click="$router.push('/')">
                 <span>КАО Модуль</span>
@@ -16,7 +16,16 @@
     </header>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const headerElement = ref<HTMLElement | null>(null)
+let headerObserver: ResizeObserver | undefined
+
+const updateHeaderHeight = () => {
+  if (headerElement.value) {
+    document.documentElement.style.setProperty('--header-height', `${headerElement.value.getBoundingClientRect().height}px`)
+  }
+}
 
 const scrollToContacts = () => {
   const contactsElement = document.getElementById('contacts')
@@ -46,6 +55,12 @@ const scrollToCatalog = () => {
 
 // Обработка хэша в URL при загрузке страницы
 onMounted(() => {
+  updateHeaderHeight()
+  if (headerElement.value) {
+    headerObserver = new ResizeObserver(updateHeaderHeight)
+    headerObserver.observe(headerElement.value)
+  }
+
   if (window.location.hash === '#catalog') {
     setTimeout(() => {
       const catalogElement = document.getElementById('catalog')
@@ -57,6 +72,10 @@ onMounted(() => {
       }
     }, 100)
   }
+})
+
+onBeforeUnmount(() => {
+  headerObserver?.disconnect()
 })
 </script>
 

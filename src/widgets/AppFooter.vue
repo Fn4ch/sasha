@@ -2,16 +2,6 @@
   <footer class="footer">
     <div class="footer__container">
       <div class="footer__main">
-        <div class="footer__brand">
-          <div class="brand-logo">
-            <img src="@/assets/logo.svg" class="logo">
-            <div class="brand-info">
-              <span class="company-name">КАО Модуль</span>
-              <p class="company-tagline">Модульные дома для жизни и отдыха</p>
-            </div>
-          </div>
-        </div>
-        
         <div class="footer__contacts">
           <h4 class="contacts__title">Контакты</h4>
           <div class="contacts-grid">
@@ -84,20 +74,6 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <style lang="scss" scoped>
-.logo{
-  background-color: transparent;
-  max-width: 156px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  transition: transform 0.3s ease;
-  
-  @media (max-width: 768px) {
-    width: 80px;
-  }
-  @media (min-width: 1921px) {
-    max-width: 12.48vw;
-  }
-}
-
 .footer {
   bottom: 0;
   left: 0;
@@ -150,7 +126,7 @@ const currentYear = new Date().getFullYear()
 
   &__main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
     align-items: start;
     
@@ -159,77 +135,11 @@ const currentYear = new Date().getFullYear()
     }
     
     @media (max-width: 1024px) {
-      grid-template-columns: 1fr;
       gap: 2rem;
     }
     
     @media (max-width: 768px) {
       gap: 1.5rem;
-    }
-  }
-
-  &__brand {
-    background-color: transparent;
-  }
-
-  .brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-    
-    @media (min-width: 1921px) {
-      gap: 1.2vw;
-      margin-bottom: 1.2vw;
-    }
-    
-    @media (max-width: 768px) {
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-  }
-
-  .brand-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    
-    @media (min-width: 1921px) {
-      gap: 0.4vw;
-    }
-  }
-
-  .company-name {
-    color: $colorOrange;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    
-    @media (min-width: 1921px) {
-      font-size: 1.44vw;
-    }
-    
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  .company-tagline {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1rem;
-    margin: 0;
-    font-weight: 400;
-    
-    @media (min-width: 1921px) {
-      font-size: 0.8vw;
-    }
-    
-    @media (max-width: 768px) {
-      font-size: 0.9rem;
     }
   }
 

@@ -81,7 +81,7 @@ useHead({
                         },
                         {
                             '@type': 'ContactPoint',
-                            telephone: '+79600310187',
+                            telephone: '+7 963 123 0396',
                             contactType: 'customer support',
                             areaServed: 'RU',
                             availableLanguage: 'Russian',
