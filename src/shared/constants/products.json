@@ -2,15 +2,15 @@
   {
     "id": "px3",
     "images": [
-      "PX3.1.png",
-      "PX3.2.png",
-      "PX3.3.png",
-      "PX3.4.png",
-      "PX3.5.png",
-      "PX3.6.png",
-      "PX3.7.png",
-      "PX3.8.png",
-      "PX3.9.png"
+      "PX3.1.webp",
+      "PX3.2.webp",
+      "PX3.3.webp",
+      "PX3.4.webp",
+      "PX3.5.webp",
+      "PX3.6.webp",
+      "PX3.7.webp",
+      "PX3.8.webp",
+      "PX3.9.webp"
     ],
     "title": "Модульный дом PX3",
     "description": "Размеры Д5600хШ3300хВ3300 Площадь 18м2",
@@ -23,11 +23,11 @@
   {
     "id": "px5",
     "images": [
-      "PX5.1.png",
-      "PX5.2.png",
-      "PX5.3.png",
-      "PX5.4.png",
-      "PX5.5.png"
+      "PX5.1.webp",
+      "PX5.2.webp",
+      "PX5.3.webp",
+      "PX5.4.webp",
+      "PX5.5.webp"
     ],
     "title": "Модульный дом PX5",
     "description": "Размеры: Д8500хШ3300хВ3300 Площадь: 28м2",
@@ -40,15 +40,15 @@
   {
     "id": "px7",
     "images": [
-      "PX7.1.png",
-      "PX7.2.png",
-      "PX7.3.png",
-      "PX7.4.png",
-      "PX7.5.png",
-      "PX7.6.png",
-      "PX7.7.png",
-      "PX7.8.png",
-      "PX7.9.png"
+      "PX7.1.webp",
+      "PX7.2.webp",
+      "PX7.3.webp",
+      "PX7.4.webp",
+      "PX7.5.webp",
+      "PX7.6.webp",
+      "PX7.7.webp",
+      "PX7.8.webp",
+      "PX7.9.webp"
     ],
     "title": "Модульный дом PX7",
     "description": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
@@ -61,10 +61,10 @@
   {
     "id": "q5",
     "images": [
-      "Q5.1.png",
-      "Q5.2.png",
-      "Q5.3.png",
-      "Q5.4.png"
+      "Q5.1.webp",
+      "Q5.2.webp",
+      "Q5.3.webp",
+      "Q5.4.webp"
     ],
     "title": "Модульный дом Q5",
     "description": "Размеры Д6000хШ3300хВ3300 Площадь 16м2",
@@ -77,14 +77,14 @@
   {
     "id": "o5",
     "images": [
-      "O5.1.png",
-      "O5.2.png",
-      "O5.3.png",
-      "O5.4.png",
-      "O5.5.png",
-      "O5.6.png",
-      "O5.7.png",
-      "O5.8.png"
+      "O5.1.webp",
+      "O5.2.webp",
+      "O5.3.webp",
+      "O5.4.webp",
+      "O5.5.webp",
+      "O5.6.webp",
+      "O5.7.webp",
+      "O5.8.webp"
     ],
     "title": "Модульный дом O5",
     "description": "Размеры Д11500хШ3300хВ3300 Площадь 38м2",
@@ -97,10 +97,10 @@
   {
     "id": "v3",
     "images": [
-      "V3.1.png",
-      "V3.2.png",
-      "V3.3.png",
-      "V3.4.png"
+      "V3.1.webp",
+      "V3.2.webp",
+      "V3.3.webp",
+      "V3.4.webp"
     ],
     "title": "Модульный дом V3",
     "description": "Размеры: Д6400хШ3300хВ3300 Площадь: 22м2",
@@ -113,12 +113,12 @@
   {
     "id": "v6",
     "images": [
-      "V6.1.png",
-      "V6.2.png",
-      "V6.3.png",
-      "V6.4.png",
-      "V6.5.png",
-      "V6.6.png"
+      "V6.1.webp",
+      "V6.2.webp",
+      "V6.3.webp",
+      "V6.4.webp",
+      "V6.5.webp",
+      "V6.6.webp"
     ],
     "title": "Модульный дом V6",
     "description": "Размеры Д8500хШ3300хВ3300 Площадь 28м2",
@@ -131,14 +131,14 @@
   {
     "id": "v9",
     "images": [
-      "V9.1.png",
-      "V9.2.png",
-      "V9.3.png",
-      "V9.4.png",
-      "V9.5.png",
-      "V9.6.png",
-      "V9.7.png",
-      "V9.8.png"
+      "V9.1.webp",
+      "V9.2.webp",
+      "V9.3.webp",
+      "V9.4.webp",
+      "V9.5.webp",
+      "V9.6.webp",
+      "V9.7.webp",
+      "V9.8.webp"
     ],
     "title": "Модульный дом V9",
     "description": "Размеры: Д11500хШ3300хВ3300 Площадь: 38м2",
@@ -151,14 +151,14 @@
   {
     "id": "aircraft-capsule",
     "images": [
-      "AirCraft.1.PNG",
-      "AirCraft.2.PNG",
-      "AirCraft.3.PNG",
-      "AirCraft.4.PNG",
-      "AirCraft.5.PNG",
-      "AirCraft.6.PNG",
-      "AirCraft.7.PNG",
-      "AirCraft.8.PNG"
+      "AirCraft.1.webp",
+      "AirCraft.2.webp",
+      "AirCraft.3.webp",
+      "AirCraft.4.webp",
+      "AirCraft.5.webp",
+      "AirCraft.6.webp",
+      "AirCraft.7.webp",
+      "AirCraft.8.webp"
     ],
     "title": "Модульный дом Aircraft Capsule",
     "description": "Размеры Д9600хШ3300хВ3300 Площадь 32м2",
