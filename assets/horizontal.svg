@@ -29,13 +29,13 @@ viewBox="0 0 30000 10000"
     .fil0 {fill:#F48500}
     .fil3 {fill:#2B2A29;fill-rule:nonzero}
     .fil4 {fill:#F48500;fill-rule:nonzero}
-    .fnt0 {font-weight:bold;font-size:3880.55px;font-family:'IBM Plex Serif'}
+    .fnt0 {font-weight:700;font-size:2600px;font-family:Arial,sans-serif}
    ]]>
   </style>
  </defs>
  <g id="Слой_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <text x="14989.57" y="6966.43"  class="fil0 fnt0">ВЕСЫ</text>
+  <text x="14989.57" y="6400" class="fil0 fnt0">КАО МОДУЛЬ</text>
   <g id="_1822079264496">
    <path class="fil1 str0" d="M10497.07 2862.19c-1333.33,-666.67 -2666.67,-666.67 -4000,0"/>
    <path class="fil1 str0" d="M6497.07 2862.19c1333.33,-666.67 2666.67,-666.67 4000,0"/>

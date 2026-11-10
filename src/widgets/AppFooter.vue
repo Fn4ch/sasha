@@ -6,8 +6,8 @@
           <div class="brand-logo">
             <img src="@/assets/logo.svg" class="logo">
             <div class="brand-info">
-              <span class="company-name">ООО "Весы"</span>
-              <p class="company-tagline">Профессиональные весы для любых задач</p>
+              <span class="company-name">КАО Модуль</span>
+              <p class="company-tagline">Модульные дома для жизни и отдыха</p>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
 
       <div class="footer__dev dev">
         <div class="dev__info">
-          <p class="dev__copyright">&copy; {{ currentYear }} Весы Казань</p>
+          <p class="dev__copyright">&copy; {{ currentYear }} КАО Модуль</p>
           <p class="dev__rights">Все права защищены</p>
           <NuxtLink to="/privacy-policy" class="privacy-link">Политика конфиденциальности</NuxtLink>
         </div>

@@ -5,5 +5,5 @@ export const getImageFromS3 = (image: string) => {
     if(VITE_S3_URL) {
         return `${VITE_S3_URL}/images/${image}`
     }
-    return `/images/${image}.png`
+    return `/images/${image}.webp`
 }

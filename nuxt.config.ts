@@ -20,7 +20,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { property: 'og:locale', content: 'ru_RU' },
-        { property: 'og:site_name', content: 'Весы Казань' },
+        { property: 'og:site_name', content: 'КАО Модуль' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

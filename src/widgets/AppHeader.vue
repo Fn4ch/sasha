@@ -2,7 +2,7 @@
     <header id="header" class="header">
         <nav class="navigation">
             <div class="navigation__logo" @click="$router.push('/')">
-                <span>KAO модуль</span>
+                <span>КАО Модуль</span>
             </div>
             <div class="navigation__links">
                 <button class="nav-link" @click="scrollToCatalog">

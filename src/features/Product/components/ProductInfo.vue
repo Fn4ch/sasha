@@ -2,10 +2,10 @@
     <header class="hero-section">
         <div class="hero-background">
             <NuxtImg 
-                :src="getImageFromS3('kaopage')" 
+                :src="getImageFromS3('mainpage')" 
                 sizes="100vw"
                 class="hero-image"
-                alt="Весы Казань - профессиональное весовое оборудование"
+                alt="КАО Модуль — модульные дома"
                 format="webp"
                 quality="85"
                 placeholder
@@ -19,7 +19,7 @@
         <section class="hero-content">
             <div class="hero-text">
                 <p class="hero-subtitle">
-                    КАО модуль
+                    КАО Модуль
                 </p>
                 
                 <div class="hero-cta">
@@ -100,57 +100,16 @@ const openContactModal = () => { isContactOpen.value = true }
 }
 
 .hero-image {
-    filter: brightness(70%);
-    z-index: 0;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center center;
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    /* WebKit и Safari специфичные стили */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
-    
-    /* Исправление для iOS Safari */
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    
-    @media (max-width: 1920px) {
-        max-height: calc(100vh - 90px);
-    }
-    
-    @media (max-width: 1440px) {
-        max-height: calc(90vh - 85px);
-    }
-    
-    @media (max-width: 1024px) {
-        max-height: calc(85vh - 80px);
-    }
-
-    
-    @media (max-width: 480px) {
-        max-height: calc(85vh - 70px);
-    }
-    
-    @media (max-width: 375px) {
-        max-height: calc(75vh - 65px);
-    }
-    
-    @media (max-width: 320px) {
-        max-height: calc(70vh - 60px);
-    }
+    filter: brightness(70%);
+    z-index: 0;
 }
 
 .hero-overlay {
